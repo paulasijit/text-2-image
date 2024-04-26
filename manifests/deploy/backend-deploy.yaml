@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bhumika-backend-deployment
+  labels:
+    app: bhumika-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bhumika-backend
+  template:
+    metadata:
+      labels:
+        app: bhumika-backend
+    spec:
+      containers:
+        - name: bhumika-backend
+          image: bhumika-t2i-backend
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000

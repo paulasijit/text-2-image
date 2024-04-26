@@ -1,0 +1,17 @@
+googletrans==3.1.0a0
+flask_cors
+stanza
+huggingface_hub
+pyngrok
+diffusers
+transformers
+mediapy
+torch
+opencv-python-headless
+matplotlib
+numpy
+pandas
+requests
+spacy
+safetensors
+tqdm
