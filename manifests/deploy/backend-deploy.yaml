@@ -19,4 +19,4 @@ spec:
           image: bhumika-t2i-backend
           imagePullPolicy: Never
           ports:
-            - containerPort: 5000
+            - containerPort: 5001

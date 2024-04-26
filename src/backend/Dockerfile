@@ -28,7 +28,7 @@ RUN huggingface-cli login --token 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
 COPY . /app/
 
 # Expose port 5000 to the outside world
-EXPOSE 5000
+EXPOSE 5001
 
 # Command to run the application
 CMD ["python", "main.py"]
