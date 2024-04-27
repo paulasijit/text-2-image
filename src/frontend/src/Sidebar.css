@@ -1,0 +1,46 @@
+/* Sidebar.css */
+
+.sidebar {
+  width: 220px;
+  
+  background-color: #0d0114;
+  min-height: 100vh;
+  /* Other styles as needed */
+  padding-top: 0px; /* Padding at the top */
+  box-sizing: border-box;
+}
+
+.sidebar-logo {
+  display: flex;
+  justify-content: center; /* Center the logo horizontally */
+  margin-bottom: 0px; /* Space below the logo */
+}
+
+.sidebar-logo img {
+  max-width: 100%; /* Ensure the logo is responsive and fits the container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  font-size: 16px;
+  border-bottom: 1px solid #955c9c;
+  color: #ee95f8;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions for interaction */
+}
+
+.sidebar-item:hover, .sidebar-item.active {
+  background-color: #8A2BE2; /* Changed to desired background color for hover and active */
+  color: #ffffff; /* Ensure text color is white for better contrast */
+}
+
+.sidebar-item.active {
+  font-weight: bold; /* Bolder text for active item */
+}
+
+.sidebar-item svg {
+  margin-right: 10px;
+}

@@ -1,0 +1,160 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+  width: 96%;
+  border-radius: 10px; 
+  background-color: rgb(32, 2, 30);
+  align-items: stretch; 
+}
+
+.prompts {
+  display: flex;
+justify-content: space-between;
+width: 100%;
+gap: 20px;
+}
+.generate {
+  display: flex;
+justify-content: space-between;
+gap: 20px;
+}
+
+
+.prompt-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Assuming you want the padding to be considered, subtract padding from 100% width */
+  max-width: none; /* Remove the max-width constraint */
+  gap: 10px;
+  padding-bottom: 20px;
+  box-sizing: border-box; /* Include padding and borders in the element's total width and height */
+  position: relative;
+}
+.prompt-label {
+font-size: 20px;
+color: white; /* For contrast against the dark background */
+margin-bottom: 10px; /* Space between label and input */
+padding-left: 5px;
+padding-right: 10px; 
+font-weight: 600;
+}
+
+.search-bar {
+  flex-grow: 1;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #D3D3D3;
+  border-radius: 5px;
+  outline: none;
+  margin-right: 10px; /* Ensure there's a margin between the search bar and button */
+  /*overflow: hidden;  Prevent scrollbars from appearing when content is too long */
+}
+/* Adjust the negative prompt container and input */
+.negative-prompt-container {
+  flex-basis: 250px; /* Set a base width for the negative prompt, adjust as needed */
+   /* Prevent the negative prompt from shrinking */
+}
+.generate-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  height: 50px;
+  background: linear-gradient(to right, #6D335D, #9B50BA); /* Purple gradient */
+  color: white;
+  border: none;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.generate-button:hover {
+  background: linear-gradient(to right, #5C2A55, #7E44A1); /* Slightly darker gradient on hover */
+}
+
+.toggle-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px; /* Space below toggle section */
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #532d49;
+-webkit-transition: .4s;
+transition: .4s;
+border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #8A2BE2; /* Blue color for the slider when active */
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+-ms-transform: translateX(20px);
+  transform: translateX(26px); /* Correct distance to translate the circle */
+}
+
+.voice-button {
+  position: absolute;
+  right: 20px; /* Distance from the right edge of the search bar */
+  top: 40%; /* Aligns center of the button vertically */
+  transform: translateY(-50%); /* Centers the button vertically */
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #6D335D; /* Icon color, change as needed */
+  font-size: 20px; /* Icon size, change as needed */
+}
+
+/* You might want to adjust the hover effect as well since the button is transparent */
+.voice-button:hover {
+  color: #5C2A55; /* Darker shade when hovering over the icon */
+}
+
+.generate-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Adds space between the spinner icon and the text */
+}
+
+.generate-button span {
+  display: inline-block;
+}

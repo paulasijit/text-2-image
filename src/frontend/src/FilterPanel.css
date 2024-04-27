@@ -1,0 +1,138 @@
+/* FilterPanel.css */
+
+.filter-panel {
+    width: 26%;
+    padding: 20px;
+    padding-top: 0px;
+    background: linear-gradient(135deg, #1f1313, #937e97); /* Updated to the purple gradient from the image */
+    border-radius: 8px; /* Rounded corners for the panel */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    display: flex;
+    flex-direction: column;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Modern font */
+  }
+  
+  .filter-section {
+    margin-bottom: 1px;
+    display: flex; 
+  flex-wrap: wrap; /* Allows buttons to wrap to next line */
+  gap: 10px; /* Adjust gap as needed */
+  }
+  
+
+  .filter-title,
+.filter-subtitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #FFFFFF; /* White color for the titles */
+  margin-bottom: 12px;
+}
+
+.filter-title {
+    font-size: 35px;
+    margin-bottom : 20px;
+}
+
+.engine-dropdown {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #ffffff; /* White border */
+    border-radius: 22px; /* Rounded corners */
+    background-color: transparent;
+    color: white; /* White text color */
+    margin-bottom: 16px; /* Space below dropdown */
+  }
+
+  .engine-button,
+  .number-button {
+    font-size: 14px;
+    font-weight: 400;
+    padding: 10px 15px; /* Updated padding for a better aspect ratio */
+  border: none; /* Removing border as the buttons seem borderless in the image */
+  border-radius: 22px; /* Updated for rounded rectangle corners */
+  background: linear-gradient(135deg, #7D3B8A, #B44AC0); /* Updated to the purple gradient from the image */
+  color: #FFFFFF; /* Text color updated to white for visibility */
+  cursor: pointer;
+    outline: none;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adding subtle shadow for depth */
+}
+  
+  .engine-button.selected,
+  .number-button.selected {
+    background: #8A2BE2; /* Adjusting the selected button color to a solid purple for contrast */
+  color: #FFFFFF; /* Keeping text color white for selected state */
+}
+  
+  .engine-button:hover,
+  .number-button:hover {
+    background: linear-gradient(135deg, #532d49, #9B50BA); /* Lighter gradient on hover */
+}
+  
+  .toggle-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px; /* Space below toggle section */
+  }
+  
+  
+  
+
+  /* Image type buttons styling */
+.image-type-buttons button {
+    font-size: 14px;
+    font-weight: 400;
+    padding: 8px 16px; /* Updated padding for a better look */
+    border: none; /* No border for a cleaner look */
+    border-radius: 22px; /* Rounded rectangle shape */
+    background: linear-gradient(135deg, #7D3B8A, #B44AC0); /* Purple gradient */
+    color: #FFFFFF; /* White text for readability */
+    cursor: pointer;
+    outline: none;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    transition: background-color 0.3s ease; /* Smooth transition for color change */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  }
+  
+  .image-type-buttons button:hover {
+    background-color: #7D3B8A; /* Darker purple on hover */
+  }
+  
+  .image-type-buttons button.selected {
+    background-color: #8A2BE2; /* Solid purple for selected state */
+  }
+
+  .image-count-input {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+  
+  .image-count-textbox {
+    width: 50px;
+    text-align: center;
+    margin: 0 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    height: 25px;
+    color: white;
+    background-color: #B44AC0;
+    border: 1px solid #7D3B8A; /* Style according to your theme */
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold; 
+    color: #7D3B8A; /* Adjust color to match theme */
+  }
+  

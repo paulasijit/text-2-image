@@ -1,0 +1,14 @@
+/* styles.css or within your component style section */
+.sentiment-container {
+    width: 90%; /* Takes full width of the parent but adjusts height */
+    max-height: 1200px; /* Maximum height before scrolling */
+    overflow-x: auto; /* Allows horizontal scrolling */
+    overflow-y: hidden; /* No vertical scroll */
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 20px; /* Adds padding around the canvas */
+    background-color: #f9f9f9; /* Light grey background */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    border-radius: 8px; /* Rounded corners */
+    margin-top: 20px; /* Space above the container */
+}

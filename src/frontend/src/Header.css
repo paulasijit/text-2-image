@@ -1,0 +1,18 @@
+/* Header.css */
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8f8f8; /* Match with the header color from the image */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .search-bar {
+    flex-grow: 1;
+    margin-left: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd; /* Replace with the exact color from the image */
+    border-radius: 4px; /* Adjust to match the style in the image */
+  }
+  

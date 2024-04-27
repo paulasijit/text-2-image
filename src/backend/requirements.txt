@@ -15,3 +15,6 @@ requests
 spacy
 safetensors
 tqdm
+pymysql
+Flask-Login
+cryptography

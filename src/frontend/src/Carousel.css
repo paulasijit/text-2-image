@@ -1,0 +1,101 @@
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Adjusted to space-between to place buttons at the edges */
+  position: relative;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center; /* Ensure image is centered */
+  align-items: center; /* Align vertically */
+  position: relative;
+}
+
+.carousel img {
+  max-width: 85%;
+  height: auto;
+  transition: transform 0.2s; /* For a smooth zoom transition */
+}
+
+.carousel button {
+  background: none;
+  border: none;
+  font-size: 48px;
+  cursor: pointer;
+  color: rgb(134, 69, 129);
+}
+
+/* Styles for zoom and download buttons */
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 10px;
+  z-index: 2; /* Ensure buttons are above the image */
+}
+
+.carousel-controls button {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex; /* Align icons properly */
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.carousel-controls button:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Hide controls by default and only show when the image container is hovered */
+.image-container:hover .carousel-controls {
+  display: flex;
+}
+
+.nav-button {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  padding: 0.5em 1em;
+  margin-left: -100px;
+  margin-right: -100px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Position the left navigation button */
+.carousel .nav-button:first-child {
+  left: 10px;
+}
+
+/* Position the right navigation button */
+.carousel .nav-button:last-child {
+  right: 10px;
+}
+
+/* ... rest of your CSS */
+

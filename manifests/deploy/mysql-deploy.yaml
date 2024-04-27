@@ -3,29 +3,29 @@ kind: Service
 metadata:
   name: mysql-t2i
   labels:
-    app: mysql-t2i
+    app: mysql
 spec:
   ports:
     - port: 3306
       name: mysql
   selector:
-    app: mysql-t2i
+    app: mysql
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql-t2i
+  name: mysql
   labels:
-    app: mysql-t2i
+    app: mysql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql-t2i
+      app: mysql
   template:
     metadata:
       labels:
-        app: mysql-t2i
+        app: mysql
     spec:
       containers:
         - name: mysql

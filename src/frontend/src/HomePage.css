@@ -1,0 +1,199 @@
+/* HomePage.css */
+.home {
+    text-align: center;
+    padding: 20px;
+    line-height: 1.6;
+    background: linear-gradient(180deg, #0d0114, #6f1a79);
+    
+  }
+  .home h1, .home h2, .home h3 {
+    color: #ebb0e6;
+  }
+  
+  .home-header {
+    background-color: #282c34;
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+  }
+  .intro, .utility, .features, .guide {
+    font-size: 18px;
+    margin-bottom: 0px;
+    color: #f0ada8;
+  }
+  
+  .steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .step {
+    display: flex; /* Apply flex display */
+  align-items: center; /* Center the items vertically */
+  justify-content: start; /* Align items to the start of the flex container */
+  flex-wrap: nowrap; /* Prevent wrapping */
+  gap: 10px; /* Optional: add some space between the title and description */
+    flex-basis: 30%;
+    min-width: 280px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 10px;
+    padding: 2px;
+    background: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .step h3 {
+    margin: 0; /* Remove default margins */
+    color: #e387f0; /* Step number color */
+    font-size: 1rem; /* Adjust the size as needed */
+    height: 22px;
+  }
+  
+  .step p {
+    margin: 0; /* Remove default margins */
+    color: white; /* Description text color */
+    font-size: 1rem; /* Adjust the size as needed */
+    text-align: left; /* Align the text to the left */
+    height: 22px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li::before {
+    content: '✔️';
+    margin-right: 8px;
+    color: green;
+  }
+  
+  .features {
+    margin-top: 0px;
+  }
+  
+  .features h2 {
+    color: #ebb0e6;
+  }
+  
+  .features ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .features li {
+    color: white;
+    background: linear-gradient(180deg, #6f1a79, #8A2BE2);
+    margin: 0px;
+    padding: 10px;
+    border-radius: 8px;
+    height: 20px;
+  }
+  features-guide-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-top: 20px;
+  }
+  
+  .features, .guide {
+    width: 48%; /* Adjust the width as needed */
+  }
+  
+  .intro {
+    /* styles for intro */
+  }
+  
+  .features {
+    /* styles for features */
+  }
+  
+  .guide .step {
+    background: linear-gradient(180deg, #6f1a79, #8A2BE2);
+    margin-bottom: 2px; /* Gives space between steps */
+    padding-left: 60px;
+  }
+  /* Flex container for features and guide */
+.steps-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  
+  .features, .guide {
+    flex: 1; /* Each section will take up an equal amount of space */
+    padding: 0 20px; /* Add some padding for spacing */
+  }
+  
+  /* Optional: Add media query for responsive design */
+  @media (max-width: 768px) {
+    .steps-container {
+      flex-direction: column;
+    }
+  }
+  
+  /* HomePage.css */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 10px;
+  }
+  
+  .gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+  
+
+  /* Pagination Controls Styling */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .pagination-controls button {
+    padding: 10px 15px;
+    margin: 0 10px;
+    background-color: #45034d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination-controls button:hover {
+    background-color: #8A2BE2;
+  }
+  
+  .pagination-controls button:disabled {
+    background-color: #916999;
+    color: white;
+    cursor: default;
+  }
+  
+  .pagination-controls span {
+    margin: 0 10px;
+    font-size: 1.1em;
+    color: #f2abfa;
+  }
+
+  .pagination-controls button.previous,
+.pagination-controls button.next {
+  font-size: 1.2em; /* Make the icons a bit larger than text */
+}
+
+/* You may need to adjust the padding to ensure the buttons are not too wide */
+.pagination-controls button {
+  padding: 8px 12px; /* Adjust padding if needed */
+}

@@ -19,9 +19,6 @@ COPY requirements.txt /app/
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install additional dependencies
-RUN pip install --upgrade diffusers transformers -q
-RUN pip install --quiet --upgrade diffusers transformers accelerate mediapy
 RUN huggingface-cli login --token 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
 
 # Copy the rest of the application code into the container at /app

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bhumika-frontend-deployment
+  labels:
+    app: bhumika-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bhumika-frontend
+  template:
+    metadata:
+      labels:
+        app: bhumika-frontend
+    spec:
+      containers:
+        - name: bhumika-frontend
+          image: bhumika-t2i-frontend
+          ports:
+            - containerPort: 3000
