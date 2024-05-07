@@ -1,52 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import Sidebar from "./Sidebar";
+import SidebarDrawer from "./SidebarLayout";
 import Home from "./HomePage";
-import Content from "./Content";
-import LoginForm from "./LoginForm";
+import ContentAnalysis from "./ContentAnalysis";
+import LoginForm from "./LoginRegisterForm";
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import "./App.css";
+import Translate from "./Translate";
+import ImageGenerator from "./ImageGenerator";
+import SentimentData from "./SentimentData";
 
 const App = () => {
-  const [currentFeature, setCurrentFeature] = useState("home");
   const user = useSelector((state) => state.user);
-
-  useEffect(() => {
-    if (!user && currentFeature !== "home") {
-      setCurrentFeature("home");
-    }
-  }, [user, currentFeature]);
-
-  const handleFeatureSelect = (feature) => {
-    setCurrentFeature(feature);
-  };
-
   return (
-    <div className="app">
-      {!user && <LoginForm />}
-      {user && (
-        <>
-          <Sidebar
-            onFeatureSelect={handleFeatureSelect}
-            currentFeature={currentFeature}
-          />
-          <div className="main-content">
-            {currentFeature === "home" && <Home />}
-            {currentFeature === "imageGenerator" && (
-              <Content selectedFeature={currentFeature} />
-            )}
-            {currentFeature === "semanticAnalysis" && (
-              <Content selectedFeature={currentFeature} />
-            )}
-            {currentFeature === "contentAnalysis" && (
-              <Content selectedFeature={currentFeature} />
-            )}
-            {currentFeature === "translation" && (
-              <Content selectedFeature={currentFeature} />
-            )}
-          </div>
-        </>
-      )}
-    </div>
+    <Router>
+      <div className="app">
+        {!user && <Navigate to="/auth" />}
+        {user ? (
+          <>
+            <SidebarDrawer />
+            <div className="main-content">
+              <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/semantic-analysis" element={<SentimentData user={user} />} />
+                <Route exact path="/translation" element={<Translate user={user} />} />
+                <Route exact path="/image-generator" element={<ImageGenerator user={user} />} />
+                <Route exact path="/content-analysis" element={<ContentAnalysis user={user} />} />
+                <Route exact path="/auth" element={<LoginForm />} />
+                {/* <Route path="*" element={<NotFound/>}/> */}
+              </Routes>
+            </div>
+          </>) : (
+          <Routes>
+            <Route exact path="/auth" element={<LoginForm />} />
+          </Routes>
+        )}
+      </div>
+    </Router>
   );
 };
 

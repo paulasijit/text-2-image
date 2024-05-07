@@ -1,26 +1,35 @@
 .header {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  padding: 20px;
-  width: 96%;
-  border-radius: 10px; 
-  background-color: rgb(32, 2, 30);
-  align-items: stretch; 
+  gap: 10px;
+
+  /* Stack children vertically */
+  align-items: stretch; /* Stretch children to match the width */
+
+  width: 80%; /* Full width */
+  margin: 3%;
+
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: space-around; */
+  /* padding: 20px; */
+  /* width: 96%; */
+  /* border-radius: 10px; */
+  /* background-color: rgb(32, 2, 30); */
+  /* align-items: stretch; */
 }
 
 .prompts {
   display: flex;
-justify-content: space-between;
-width: 100%;
-gap: 20px;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
 }
 .generate {
   display: flex;
-justify-content: space-between;
-gap: 20px;
+  justify-content: space-between;
+  gap: 20px;
 }
-
 
 .prompt-container {
   display: flex;
@@ -34,19 +43,19 @@ gap: 20px;
   position: relative;
 }
 .prompt-label {
-font-size: 20px;
-color: white; /* For contrast against the dark background */
-margin-bottom: 10px; /* Space between label and input */
-padding-left: 5px;
-padding-right: 10px; 
-font-weight: 600;
+  font-size: 20px;
+  color: white; /* For contrast against the dark background */
+  margin-bottom: 10px; /* Space between label and input */
+  padding-left: 5px;
+  padding-right: 10px;
+  font-weight: 600;
 }
 
 .search-bar {
   flex-grow: 1;
   padding: 10px 15px;
   font-size: 16px;
-  border: 2px solid #D3D3D3;
+  border: 2px solid #d3d3d3;
   border-radius: 5px;
   outline: none;
   margin-right: 10px; /* Ensure there's a margin between the search bar and button */
@@ -55,13 +64,13 @@ font-weight: 600;
 /* Adjust the negative prompt container and input */
 .negative-prompt-container {
   flex-basis: 250px; /* Set a base width for the negative prompt, adjust as needed */
-   /* Prevent the negative prompt from shrinking */
+  /* Prevent the negative prompt from shrinking */
 }
 .generate-button {
   padding: 10px 20px;
   font-size: 16px;
   height: 50px;
-  background: linear-gradient(to right, #6D335D, #9B50BA); /* Purple gradient */
+  background: linear-gradient(to right, #6d335d, #9b50ba); /* Purple gradient */
   color: white;
   border: none;
   border-radius: 25px; /* Rounded corners */
@@ -71,7 +80,11 @@ font-weight: 600;
 }
 
 .generate-button:hover {
-  background: linear-gradient(to right, #5C2A55, #7E44A1); /* Slightly darker gradient on hover */
+  background: linear-gradient(
+    to right,
+    #5c2a55,
+    #7e44a1
+  ); /* Slightly darker gradient on hover */
 }
 
 .toggle-section {
@@ -96,15 +109,15 @@ font-weight: 600;
 
 .slider {
   position: absolute;
-cursor: pointer;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background-color: #532d49;
--webkit-transition: .4s;
-transition: .4s;
-border-radius: 24px;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #532d49;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 24px;
 }
 
 .slider:before {
@@ -115,18 +128,18 @@ border-radius: 24px;
   left: 2px;
   bottom: 2px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   border-radius: 50%;
 }
 
 input:checked + .slider {
-  background-color: #8A2BE2; /* Blue color for the slider when active */
+  background-color: #8a2be2; /* Blue color for the slider when active */
 }
 
 input:checked + .slider:before {
   -webkit-transform: translateX(20px);
--ms-transform: translateX(20px);
+  -ms-transform: translateX(20px);
   transform: translateX(26px); /* Correct distance to translate the circle */
 }
 
@@ -139,13 +152,13 @@ input:checked + .slider:before {
   border: none;
   outline: none;
   cursor: pointer;
-  color: #6D335D; /* Icon color, change as needed */
+  color: #6d335d; /* Icon color, change as needed */
   font-size: 20px; /* Icon size, change as needed */
 }
 
 /* You might want to adjust the hover effect as well since the button is transparent */
 .voice-button:hover {
-  color: #5C2A55; /* Darker shade when hovering over the icon */
+  color: #5c2a55; /* Darker shade when hovering over the icon */
 }
 
 .generate-button {

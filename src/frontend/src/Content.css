@@ -1,81 +1,85 @@
 /* Content.css */
 
 .content {
-    display: flex;
-   /* Stack children vertically */
-    align-items: stretch; /* Stretch children to match the width */
-    background: linear-gradient(180deg, #0d0114, #6f1a79);
-    width: 100%; /* Full width */
-    /* Padding around the content */
-    box-sizing: border-box; /* Include padding in the width calculation */
+  display: flex;
+  /* Stack children vertically */
+  align-items: stretch; /* Stretch children to match the width */
+  background: #0f141b;
+  width: 100%; /* Full width */
+  /* Padding around the content */
+  box-sizing: border-box; /* Include padding in the width calculation */
+  height: 100vh;
 }
-  
+
 .image-gallery {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .gallery-image {
-    max-width: 66%;
-    max-height: 100%;
-    height: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  max-width: 66%;
+  max-height: 100%;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /* Content.css */
 
 .generate-button {
-    /* ... (your existing styles for generate button) */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Add some style for the loading spinner, if needed */
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  .fa-spinner {
-    animation: spin 1s linear infinite;
-  }
-  
+  /* ... (your existing styles for generate button) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .translation-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    
-   /* Stack children vertically */
-    align-items: stretch; /* Stretch children to match the width */
-   
-    width: 80%; /* Full width */
-    margin: 3%
+/* Add some style for the loading spinner, if needed */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  .translation-prompt {
-    background: linear-gradient(180deg, #6f1a79, #8A2BE2);
-    border-radius: 5px;
-    padding: 10px;
-    margin-top: 20px;
+  100% {
+    transform: rotate(360deg);
   }
-  
-  .prompt-output {
-    background-color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    margin-top: 5px;
-    min-height: 40px; /* or however tall you want it */
-    color: #333;
-    font-family: 'Arial', sans-serif;
-    font-size: 1rem;
-    white-space: pre-wrap; /* For text formatting */
-    overflow-wrap: break-word;
-    outline: none; /* Removes the outline to mimic the textarea */
-  }
-  
+}
+
+.fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+.translation-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  /* Stack children vertically */
+  align-items: stretch; /* Stretch children to match the width */
+
+  width: 80%; /* Full width */
+  margin: 3%;
+}
+
+.translation-prompt {
+  background: linear-gradient(180deg, #6f1a79, #8a2be2);
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.prompt-output {
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 5px;
+  min-height: 40px; /* or however tall you want it */
+  color: #333;
+  font-family: "Arial", sans-serif;
+  font-size: 1rem;
+  white-space: pre-wrap; /* For text formatting */
+  overflow-wrap: break-word;
+  outline: none; /* Removes the outline to mimic the textarea */
+}
+

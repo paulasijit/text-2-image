@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #282c34;
 }
 
 .App-link {
@@ -32,6 +32,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -39,8 +40,10 @@
 
 .app {
   display: flex;
-  font-family: 'Arial', sans-serif; /* Use a font similar to the one in the image */
-  background: linear-gradient(180deg, #6f1a79, #6f1a79);
+  font-family: "Arial", sans-serif;
+  /* Use a font similar to the one in the image */
+  background: #0f141b;
+  overflow-x: hidden;
 }
 
 .main-content {

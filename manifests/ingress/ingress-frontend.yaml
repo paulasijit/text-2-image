@@ -11,7 +11,7 @@ spec:
         paths:
           - backend:
               service:
-                name: frontend-frontend-svc
+                name: bhumika-frontend-svc
                 port:
                   number: 3000
             path: /

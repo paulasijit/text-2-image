@@ -17,5 +17,6 @@ spec:
       containers:
         - name: bhumika-frontend
           image: bhumika-t2i-frontend
+          imagePullPolicy: Never
           ports:
             - containerPort: 3000

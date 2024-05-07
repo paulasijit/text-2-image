@@ -4,7 +4,8 @@ import { faDownload, faExpand } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
-import './Carousel.css';
+// import './Carousel.css';
+import { Container } from '@mui/material';
 
 const Carousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -25,11 +26,11 @@ const Carousel = ({ images }) => {
 
   const handleFullScreen = () => {
     if (imageRef.current && imageRef.current.requestFullscreen) {
-        imageRef.current.requestFullscreen().catch(err => {
-            console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-        });
+      imageRef.current.requestFullscreen().catch(err => {
+        console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+      });
     } else {
-        imageRef.current.classList.add('fullscreen-fallback');
+      imageRef.current.classList.add('fullscreen-fallback');
     }
   };
 
@@ -43,14 +44,20 @@ const Carousel = ({ images }) => {
   };
 
   return (
-    <div className="carousel">
+    <Container style={{ position: 'relative' }} sx={{ marginTop: 3, marginBottom: 3, maxWidth: '95% !important' }}>
       <button onClick={goToPrevious} className="nav-button">
         <FontAwesomeIcon icon={faAngleLeft} />
       </button>
       <div className="image-container"
-           onMouseEnter={() => setHovered(true)}
-           onMouseLeave={() => setHovered(false)}>
-        <img ref={imageRef} src={images[currentIndex]} alt={`Slide ${currentIndex}`} />
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}>
+        <img style={{
+          width: "50%",
+          height: "50%",
+          borderRadius: "8px",
+          objectFit: "scale-down",
+          transition: "transform 0.3s ease"
+        }} ref={imageRef} src={images[currentIndex]} alt={`Slide ${currentIndex}`} />
         {hovered && (
           <div className="carousel-controls">
             <button onClick={handleFullScreen}><FontAwesomeIcon icon={faExpand} /></button>
@@ -61,10 +68,10 @@ const Carousel = ({ images }) => {
       <button onClick={goToNext} className="nav-button">
         <FontAwesomeIcon icon={faAngleRight} />
       </button>
-    </div>
+    </Container>
   );
-  
-  
+
+
 };
 
 export default Carousel;
