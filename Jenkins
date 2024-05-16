@@ -49,33 +49,33 @@ pipeline{
 
         stage("Deploy Kubernetes pods") {
             steps {
-                sh "kubectl apply -f deploy/mysql-deploy.yaml"
-                sh "kubectl apply -f deploy/ngnix-deploy.yaml"
-                sh "kubectl apply -f deploy/backend-deploy.yaml"
-                sh "kubectl apply -f deploy/frontend-deploy.yaml"
+                sh "sudo kubectl apply -f manifests/deploy/mysql-deploy.yaml"
+                sh "sudo kubectl apply -f manifests/deploy/nginx-deploy.yaml"
+                sh "sudo kubectl apply -f manifests/deploy/backend-deploy.yaml"
+                sh "sudo kubectl apply -f manifests/deploy/frontend-deploy.yaml"
             }
         }
 
         stage("Set Ingress rules for Frontend and Backend") {
             steps {
-                sh "kubectl apply -f ingress/ingress-backend.yaml"
-                sh "kubectl apply -f ingress/ingress-frontend.yaml"
+                sh "sudo kubectl apply -f manifests/ingress/ingress-backend.yaml"
+                sh "sudo kubectl apply -f manifests/ingress/ingress-frontend.yaml"
             }
         }
 
         stage("Deploy Kubernetes services") {
             steps {
-                sh "kubectl apply -f svc/backend-service.yaml"
-                sh "kubectl apply -f svc/frontend-service.yaml"
-                sh "kubectl apply -f svc/ngnix-svc.yaml"
+                sh "sudo kubectl apply -f manifests/svc/backend-service.yaml"
+                sh "sudo kubectl apply -f manifests/svc/frontend-service.yaml"
+                sh "sudo kubectl apply -f manifests/svc/nginx-svc.yaml"
             }
         }
     }
-    post{
-        always{
-            mail to: "bhumikajindal2014@gmail.com",
-            subject: "Jenkins Calculator Project",
-            body: "Project built now..."
+    post {
+        always {
+            emailext subject: 'Jenkins Calculator Project',
+                    body: 'Project built now...',
+                    to: 'asijit1610@gmail.com'
         }
     }
 }

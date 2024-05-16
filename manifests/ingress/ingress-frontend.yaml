@@ -17,6 +17,6 @@ spec:
             path: /
             pathType: Prefix
 status:
-  loadbalancer:
+  loadBalancer:
     ingress:
       - hostname: localhost
