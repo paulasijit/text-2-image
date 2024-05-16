@@ -1,52 +1,48 @@
-pipeline{
+pipeline {
     agent any
+    environment {
+        DOCKER_IMAGE_TAG = "${currentBuild.number}"
+        BACKEND_IMAGE = "bhumika-t2i-backend:${DOCKER_IMAGE_TAG}"
+        FRONTEND_IMAGE = "bhumika-t2i-frontend:${DOCKER_IMAGE_TAG}"
+    }
     stages {
-        stage("Code Fetch")
-        {
-            steps{
-                git url: "https://github.com/bhumika-16/text2scene.git", branch:"main"
+        stage("Code Fetch") {
+            steps {
+                git url: "https://github.com/paulasijit/text-2-image", branch: "main"
             }
         }
-        stage("Build Backend Docker Image")
-        {
-            steps{
-                sh "docker build -t bhumika-t2i-backend:latest src/backend"
+        stage("Build Backend Docker Image") {
+            steps {
+                sh "docker build -t bhumika-t2i-backend:${DOCKER_IMAGE_TAG} src/backend"
             }
         }
-
-        stage("Build Frontend Docker Image")
-        {
-            steps{
-                sh "docker build -t bhumika-t2i-frontend:latest src/frontend"
+        stage("Build Frontend Docker Image") {
+            steps {
+                sh "docker build -t bhumika-t2i-frontend:${DOCKER_IMAGE_TAG} src/frontend"
             }
         }
-        stage("Push Backend Docker Images")
-        {
-            steps{
+        stage("Push Backend Docker Images") {
+            steps {
                 withCredentials([usernamePassword(credentialsId:"DockerHubCred",passwordVariable:"dockerpassword",usernameVariable:"dockerusername")]){
-
                     sh "docker login -u ${env.dockerusername} -p ${env.dockerpassword}"
-                    sh "docker tag bhumika-t2i-backend  ${env.dockerusername}/bhumika-t2i-backend"
-                    sh "docker push ${env.dockerusername}/bhumika-t2i-backend"
-
+                    sh "docker tag bhumika-t2i-backend:${DOCKER_IMAGE_TAG} ${env.dockerusername}/bhumika-t2i-backend:${DOCKER_IMAGE_TAG}"
+                    sh "docker push ${env.dockerusername}/bhumika-t2i-backend:${DOCKER_IMAGE_TAG}"
+                    sh "docker tag ${env.dockerusername}/bhumika-t2i-backend:${DOCKER_IMAGE_TAG} ${env.dockerusername}/bhumika-t2i-backend:latest"
+                    sh "docker push ${env.dockerusername}/bhumika-t2i-backend:latest"
                 }
             }
-
         }
-        stage("Push Frontend Docker Images")
-        {
-            steps{
+        stage("Push Frontend Docker Images") {
+            steps {
                 withCredentials([usernamePassword(credentialsId:"DockerHubCred",passwordVariable:"dockerpassword",usernameVariable:"dockerusername")]){
-
                     sh "docker login -u ${env.dockerusername} -p ${env.dockerpassword}"
-                    sh "docker tag bhumika-t2i-frontend  ${env.dockerusername}/bhumika-t2i-frontend"
-                    sh "docker push ${env.dockerusername}/bhumika-t2i-frontend"
-
+                    sh "docker tag bhumika-t2i-frontend:${DOCKER_IMAGE_TAG} ${env.dockerusername}/bhumika-t2i-frontend:${DOCKER_IMAGE_TAG}"
+                    sh "docker push ${env.dockerusername}/bhumika-t2i-frontend:${DOCKER_IMAGE_TAG}"
+                    sh "docker tag ${env.dockerusername}/bhumika-t2i-frontend:${DOCKER_IMAGE_TAG} ${env.dockerusername}/bhumika-t2i-frontend:latest"
+                    sh "docker push ${env.dockerusername}/bhumika-t2i-frontend:latest"
                 }
             }
-
         }
-
         stage("Deploy Kubernetes pods") {
             steps {
                 sh "sudo kubectl apply -f manifests/deploy/mysql-deploy.yaml"
@@ -55,14 +51,12 @@ pipeline{
                 sh "sudo kubectl apply -f manifests/deploy/frontend-deploy.yaml"
             }
         }
-
         stage("Set Ingress rules for Frontend and Backend") {
             steps {
                 sh "sudo kubectl apply -f manifests/ingress/ingress-backend.yaml"
                 sh "sudo kubectl apply -f manifests/ingress/ingress-frontend.yaml"
             }
         }
-
         stage("Deploy Kubernetes services") {
             steps {
                 sh "sudo kubectl apply -f manifests/svc/backend-service.yaml"
@@ -74,6 +68,8 @@ pipeline{
     post {
         success {
             sh 'echo "Build successful"'
+            sh 'docker image prune -f'
+            sh "docker rmi ${BACKEND_IMAGE} ${FRONTEND_IMAGE}"
         }
         failure {
             sh 'echo "Build failed"'

@@ -26,6 +26,7 @@ connection = pymysql.connect(
     host="mysql-t2i", user="root", password="root", database="mysql"
 )
 
+# todo
 def create_users_table():
     with connection.cursor() as cursor:
         cursor.execute("""
