@@ -9,6 +9,7 @@ import { loadUserFromLocalStorage } from "./redux/action";
 import { SnackbarProvider, useSnackbar } from "notistack";
 store.dispatch(loadUserFromLocalStorage());
 
+//main file
 ReactDOM.render(
   <React.StrictMode>
     <SnackbarProvider>

@@ -63,27 +63,10 @@ pipeline {
     }
     post {
         success {
-            script {
-                def backendContainers = sh(script: "docker container ls --filter ancestor=${BACKEND_IMAGE} -q", returnStdout: true).trim()
-                def frontendContainers = sh(script: "docker container ls --filter ancestor=${FRONTEND_IMAGE} -q", returnStdout: true).trim()
-                
-                if (backendContainers) {
-                    sh "docker container stop ${backendContainers}"
-                    sh "docker container rm ${backendContainers}"
-                }
-                
-                if (frontendContainers) {
-                    sh "docker container stop ${frontendContainers}"
-                    sh "docker container rm ${frontendContainers}"
-                }
-                
-                sh 'docker image prune -f'
-                sh "docker rmi ${BACKEND_IMAGE} ${FRONTEND_IMAGE}"
-            }
+            sh 'echo "Build failed"'
         }
         failure {
             sh 'echo "Build failed"'
-            sh 'docker rmi ${BACKEND_IMAGE} ${FRONTEND_IMAGE}'
         }
     }
 }
