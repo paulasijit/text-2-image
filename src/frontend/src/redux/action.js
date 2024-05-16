@@ -39,7 +39,7 @@ export const login = (email, password) => {
   };
 };
 
-//todo
+//todo update
 
 export const updateToken = (token) => {
   return {
