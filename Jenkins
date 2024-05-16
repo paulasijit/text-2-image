@@ -10,14 +10,14 @@ pipeline{
         stage("Build Backend Docker Image")
         {
             steps{
-                sh "docker build -t bhumika-t2i-backend src/backend"
+                sh "docker build -t bhumika-t2i-backend:latest src/backend"
             }
         }
 
         stage("Build Frontend Docker Image")
         {
             steps{
-                sh "docker build -t bhumika-t2i-frontend src/frontend"
+                sh "docker build -t bhumika-t2i-frontend:latest src/frontend"
             }
         }
         stage("Push Backend Docker Images")

@@ -75,16 +75,6 @@ const LoginForm = () => {
     }
   };
 
-  // if (error) {
-  //   enqueueSnackbar(error, {
-  //     variant: "error",
-  //     anchorOrigin: {
-  //       vertical: "bottom",
-  //       horizontal: "right",
-  //     },
-  //   });
-  // }
-
   const showLoginForm = () => {
     setShowLogin(true);
   };
