@@ -21,7 +21,6 @@ from flask_jwt_extended import (
 from googletrans import Translator
 from userMixin import *
 
-# Database connection setup
 connection = pymysql.connect(
     host="mysql-t2i", user="root", password="root", database="mysql"
 )
