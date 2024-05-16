@@ -35,21 +35,28 @@ const ContentAnalysis = ({ user }) => {
       }
 
       const data = await response.json();
-      enqueueSnackbar("Filtration scores fetched successfully.", {
-        variant: "success",
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "right",
-        },
-      });
 
       if (data.access_token) {
         dispatch(updateToken(data.access_token));
       }
       if (data && data.filtration_scores) {
         setFiltrationScores(data.filtration_scores[0]);
+        enqueueSnackbar("Filtration scores fetched successfully.", {
+          variant: "success",
+          anchorOrigin: {
+            vertical: "bottom",
+            horizontal: "right",
+          },
+        });
       } else {
         setFiltrationScores([]);
+        enqueueSnackbar("Please try again! Model not ready.", {
+          variant: "warning",
+          anchorOrigin: {
+            vertical: "bottom",
+            horizontal: "right",
+          },
+        });
       }
     } catch (error) {
       setError("Error fetching filtration scores: " + error.message);

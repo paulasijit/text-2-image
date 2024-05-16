@@ -100,7 +100,7 @@ const Prompt = ({
   setSelectedTechnique,
   selectedTechnique,
 }) => {
-  const [prompt, setPrompt] = useState(localStorage.getItem("prompt"));
+  const [prompt, setPrompt] = useState(localStorage.getItem("prompt") ? localStorage.getItem("prompt") : "");
   const [isListening, setIsListening] = useState(false);
   const [isSettingOpen, setIsSettingOpen] = useState(false);
   const [activeInput, setActiveInput] = useState(null);
