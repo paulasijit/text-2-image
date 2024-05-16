@@ -26,6 +26,17 @@ connection = pymysql.connect(
     host="mysql-t2i", user="root", password="root", database="mysql"
 )
 
+def create_users_table():
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS users (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                email VARCHAR(255) UNIQUE NOT NULL,
+                password VARCHAR(255) NOT NULL
+            )
+        """)
+    connection.commit()
+
 
 def get_translation(text, dest_lang):
     translator = Translator()
@@ -206,6 +217,7 @@ def index():
 
 @app.route("/register", methods=["post"])
 def registerPost():
+    create_users_table()
     payload = request.json
     email = payload.get("email")
     password = payload.get("password")
@@ -236,6 +248,7 @@ def registerPost():
 
 @app.route("/login", methods=["POST"])
 def login_post():
+    create_users_table()
     payload = request.json
     email = payload.get("email")
     app.logger.info("Login attempt for email: %s", email)
