@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: bhumika-backend
-          image: bhumika16/bhumika-t2i-backend
+          image: bhumika16/bhumika-t2i-backend:latest
           # imagePullPolicy: Never
           ports:
             - containerPort: 5001
