@@ -67,10 +67,16 @@ pipeline {
                 def backendContainers = sh(script: "docker container ls --filter ancestor=${BACKEND_IMAGE} -q", returnStdout: true).trim()
                 def frontendContainers = sh(script: "docker container ls --filter ancestor=${FRONTEND_IMAGE} -q", returnStdout: true).trim()
                 
-                sh "docker container stop ${backendContainers}"
-                sh "docker container rm ${backendContainers}"
-                sh "docker container stop ${frontendContainers}"
-                sh "docker container rm ${frontendContainers}"
+                if (backendContainers) {
+                    sh "docker container stop ${backendContainers}"
+                    sh "docker container rm ${backendContainers}"
+                }
+                
+                if (frontendContainers) {
+                    sh "docker container stop ${frontendContainers}"
+                    sh "docker container rm ${frontendContainers}"
+                }
+                
                 sh 'docker image prune -f'
                 sh "docker rmi ${BACKEND_IMAGE} ${FRONTEND_IMAGE}"
             }
