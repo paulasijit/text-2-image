@@ -25,7 +25,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId:"DockerHubCred",passwordVariable:"dockerpassword",usernameVariable:"dockerusername")]){
                     sh "docker login -u ${env.dockerusername} -p ${env.dockerpassword}"
-                    sh "docker tag ${env.dockerusername}/bhumika-t2i-backend:${DOCKER_IMAGE_TAG} ${env.dockerusername}/bhumika-t2i-backend"
+                    sh "docker tag bhumika-t2i-backend:${DOCKER_IMAGE_TAG} ${env.dockerusername}/bhumika-t2i-backend"
                     sh "docker push ${env.dockerusername}/bhumika-t2i-backend"
                 }
             }
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId:"DockerHubCred",passwordVariable:"dockerpassword",usernameVariable:"dockerusername")]){
                     sh "docker login -u ${env.dockerusername} -p ${env.dockerpassword}"
-                    sh "docker tag ${env.dockerusername}/bhumika-t2i-frontend:${DOCKER_IMAGE_TAG} ${env.dockerusername}/bhumika-t2i-frontend"
+                    sh "docker tag bhumika-t2i-frontend:${DOCKER_IMAGE_TAG} ${env.dockerusername}/bhumika-t2i-frontend"
                     sh "docker push ${env.dockerusername}/bhumika-t2i-frontend"
                 }
             }
@@ -63,15 +63,21 @@ pipeline {
     }
     post {
         success {
-            sh 'echo "Build successful"'
-            sh 'docker container stop $(docker container ls -aq)'
-            sh 'docker container rm $(docker container ls -aq)'
-            sh 'docker image prune -f'
-            sh 'docker image prune -f'
-            sh "docker rmi ${BACKEND_IMAGE} ${FRONTEND_IMAGE}"
+            script {
+                def backendContainers = sh(script: "docker container ls --filter ancestor=${BACKEND_IMAGE} -q", returnStdout: true).trim()
+                def frontendContainers = sh(script: "docker container ls --filter ancestor=${FRONTEND_IMAGE} -q", returnStdout: true).trim()
+                
+                sh "docker container stop ${backendContainers}"
+                sh "docker container rm ${backendContainers}"
+                sh "docker container stop ${frontendContainers}"
+                sh "docker container rm ${frontendContainers}"
+                sh 'docker image prune -f'
+                sh "docker rmi ${BACKEND_IMAGE} ${FRONTEND_IMAGE}"
+            }
         }
         failure {
             sh 'echo "Build failed"'
+            sh 'docker rmi ${BACKEND_IMAGE} ${FRONTEND_IMAGE}'
         }
     }
 }
