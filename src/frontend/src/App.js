@@ -10,6 +10,7 @@ import Translate from "./Translate";
 import ImageGenerator from "./ImageGenerator";
 import SentimentData from "./SentimentData";
 
+//ok
 const App = () => {
   const user = useSelector((state) => state.user);
   return (

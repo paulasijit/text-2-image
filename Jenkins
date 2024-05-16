@@ -39,12 +39,16 @@ pipeline {
                 }
             }
         }
-        stage("Deploy Kubernetes pods") {
+        stage("Deploy Kubernetes") {
             steps {
                 sh "sudo kubectl apply -f manifests/deploy/mysql-deploy.yaml"
                 sh "sudo kubectl apply -f manifests/deploy/nginx-deploy.yaml"
                 sh "sudo kubectl apply -f manifests/deploy/backend-deploy.yaml"
                 sh "sudo kubectl apply -f manifests/deploy/frontend-deploy.yaml"
+                sh "kubectl set image deployment/backend-deployment backend=${env.dockerusername}/bhumika-t2i-backend:${DOCKER_IMAGE_TAG}"
+                sh "kubectl set image deployment/frontend-deployment frontend=${env.dockerusername}/bhumika-t2i-frontend:${DOCKER_IMAGE_TAG}"
+                sh "kubectl rollout status deployment/backend-deployment"
+                sh "kubectl rollout status deployment/frontend-deployment"
             }
         }
         stage("Set Ingress rules for Frontend and Backend") {
@@ -63,10 +67,16 @@ pipeline {
     }
     post {
         success {
-            sh 'echo "Build failed"'
+            script {
+                sh "kubectl delete pod -l app=backend --field-selector=status.phase!=Running"
+                sh "kubectl delete pod -l app=frontend --field-selector=status.phase!=Running"
+                sh "docker image prune -f"
+                sh "docker rmi ${BACKEND_IMAGE} ${FRONTEND_IMAGE}"
+            }
         }
         failure {
             sh 'echo "Build failed"'
+            sh "docker rmi ${BACKEND_IMAGE} ${FRONTEND_IMAGE}"
         }
     }
 }
