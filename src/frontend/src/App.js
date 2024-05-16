@@ -10,10 +10,8 @@ import Translate from "./Translate";
 import ImageGenerator from "./ImageGenerator";
 import SentimentData from "./SentimentData";
 
-//ok
 const App = () => {
   const user = useSelector((state) => state.user);
-  console.log(user, Date.now())
   return (
     <Router>
       <div className="app">
