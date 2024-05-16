@@ -1,382 +1,382 @@
 export const gallery = [
     {
-        "png": "/1.png",
-        "jpg": "/1.jpg",
+        "png": "/gallery/1.png",
+        "jpg": "/gallery/1.jpg",
         "index": 0
     },
     {
-        "png": "/2.png",
-        "jpg": "/2.jpg",
+        "png": "/gallery/2.png",
+        "jpg": "/gallery/2.jpg",
         "index": 1
     },
     {
-        "png": "/3.png",
-        "jpg": "/3.jpg",
+        "png": "/gallery/3.png",
+        "jpg": "/gallery/3.jpg",
         "index": 2
     },
     {
-        "png": "/4.png",
-        "jpg": "/4.jpg",
+        "png": "/gallery/4.png",
+        "jpg": "/gallery/4.jpg",
         "index": 3
     },
     {
-        "png": "/5.png",
-        "jpg": "/5.jpg",
+        "png": "/gallery/5.png",
+        "jpg": "/gallery/5.jpg",
         "index": 4
     },
     {
-        "png": "/6.png",
-        "jpg": "/6.jpg",
+        "png": "/gallery/6.png",
+        "jpg": "/gallery/6.jpg",
         "index": 5
     },
     {
-        "png": "/7.png",
-        "jpg": "/7.jpg",
+        "png": "/gallery/7.png",
+        "jpg": "/gallery/7.jpg",
         "index": 6
     },
     {
-        "png": "/8.png",
-        "jpg": "/8.jpg",
+        "png": "/gallery/8.png",
+        "jpg": "/gallery/8.jpg",
         "index": 7
     },
     {
-        "png": "/9.png",
-        "jpg": "/9.jpg",
+        "png": "/gallery/9.png",
+        "jpg": "/gallery/9.jpg",
         "index": 8
     },
     {
-        "png": "/10.png",
-        "jpg": "/10.jpg",
+        "png": "/gallery/10.png",
+        "jpg": "/gallery/10.jpg",
         "index": 9
     },
     {
-        "png": "/11.png",
-        "jpg": "/11.jpg",
+        "png": "/gallery/11.png",
+        "jpg": "/gallery/11.jpg",
         "index": 10
     },
     {
-        "png": "/12.png",
-        "jpg": "/12.jpg",
+        "png": "/gallery/12.png",
+        "jpg": "/gallery/12.jpg",
         "index": 11
     },
     {
-        "png": "/13.png",
-        "jpg": "/13.jpg",
+        "png": "/gallery/13.png",
+        "jpg": "/gallery/13.jpg",
         "index": 12
     },
     {
-        "png": "/14.png",
-        "jpg": "/14.jpg",
+        "png": "/gallery/14.png",
+        "jpg": "/gallery/14.jpg",
         "index": 13
     },
     {
-        "png": "/15.png",
-        "jpg": "/15.jpg",
+        "png": "/gallery/15.png",
+        "jpg": "/gallery/15.jpg",
         "index": 14
     },
     {
-        "png": "/16.png",
-        "jpg": "/16.jpg",
+        "png": "/gallery/16.png",
+        "jpg": "/gallery/16.jpg",
         "index": 15
     },
     {
-        "png": "/17.png",
-        "jpg": "/17.jpg",
+        "png": "/gallery/17.png",
+        "jpg": "/gallery/17.jpg",
         "index": 16
     },
     {
-        "png": "/18.png",
-        "jpg": "/18.jpg",
+        "png": "/gallery/18.png",
+        "jpg": "/gallery/18.jpg",
         "index": 17
     },
     {
-        "png": "/19.png",
-        "jpg": "/19.jpg",
+        "png": "/gallery/19.png",
+        "jpg": "/gallery/19.jpg",
         "index": 18
     },
     {
-        "png": "/20.png",
-        "jpg": "/20.jpg",
+        "png": "/gallery/20.png",
+        "jpg": "/gallery/20.jpg",
         "index": 19
     },
     {
-        "png": "/21.png",
-        "jpg": "/21.jpg",
+        "png": "/gallery/21.png",
+        "jpg": "/gallery/21.jpg",
         "index": 20
     },
     {
-        "png": "/22.png",
-        "jpg": "/22.jpg",
+        "png": "/gallery/22.png",
+        "jpg": "/gallery/22.jpg",
         "index": 21
     },
     {
-        "png": "/23.png",
-        "jpg": "/23.jpg",
+        "png": "/gallery/23.png",
+        "jpg": "/gallery/23.jpg",
         "index": 22
     },
     {
-        "png": "/24.png",
-        "jpg": "/24.jpg",
+        "png": "/gallery/24.png",
+        "jpg": "/gallery/24.jpg",
         "index": 23
     },
     {
-        "png": "/25.png",
-        "jpg": "/25.jpg",
+        "png": "/gallery/25.png",
+        "jpg": "/gallery/25.jpg",
         "index": 24
     },
     {
-        "png": "/26.png",
-        "jpg": "/26.jpg",
+        "png": "/gallery/26.png",
+        "jpg": "/gallery/26.jpg",
         "index": 25
     },
     {
-        "png": "/27.png",
-        "jpg": "/27.jpg",
+        "png": "/gallery/27.png",
+        "jpg": "/gallery/27.jpg",
         "index": 26
     },
     {
-        "png": "/28.png",
-        "jpg": "/28.jpg",
+        "png": "/gallery/28.png",
+        "jpg": "/gallery/28.jpg",
         "index": 27
     },
     {
-        "png": "/29.png",
-        "jpg": "/29.jpg",
+        "png": "/gallery/29.png",
+        "jpg": "/gallery/29.jpg",
         "index": 28
     },
     {
-        "png": "/30.png",
-        "jpg": "/30.jpg",
+        "png": "/gallery/30.png",
+        "jpg": "/gallery/30.jpg",
         "index": 29
     },
     {
-        "png": "/31.png",
-        "jpg": "/31.jpg",
+        "png": "/gallery/31.png",
+        "jpg": "/gallery/31.jpg",
         "index": 30
     },
     {
-        "png": "/32.png",
-        "jpg": "/32.jpg",
+        "png": "/gallery/32.png",
+        "jpg": "/gallery/32.jpg",
         "index": 31
     },
     {
-        "png": "/33.png",
-        "jpg": "/33.jpg",
+        "png": "/gallery/33.png",
+        "jpg": "/gallery/33.jpg",
         "index": 32
     },
     {
-        "png": "/34.png",
-        "jpg": "/34.jpg",
+        "png": "/gallery/34.png",
+        "jpg": "/gallery/34.jpg",
         "index": 33
     },
     {
-        "png": "/35.png",
-        "jpg": "/35.jpg",
+        "png": "/gallery/35.png",
+        "jpg": "/gallery/35.jpg",
         "index": 34
     },
     {
-        "png": "/36.png",
-        "jpg": "/36.jpg",
+        "png": "/gallery/36.png",
+        "jpg": "/gallery/36.jpg",
         "index": 35
     },
     {
-        "png": "/37.png",
-        "jpg": "/37.jpg",
+        "png": "/gallery/37.png",
+        "jpg": "/gallery/37.jpg",
         "index": 36
     },
     {
-        "png": "/38.png",
-        "jpg": "/38.jpg",
+        "png": "/gallery/38.png",
+        "jpg": "/gallery/38.jpg",
         "index": 37
     },
     {
-        "png": "/39.png",
-        "jpg": "/39.jpg",
+        "png": "/gallery/39.png",
+        "jpg": "/gallery/39.jpg",
         "index": 38
     },
     {
-        "png": "/40.png",
-        "jpg": "/40.jpg",
+        "png": "/gallery/40.png",
+        "jpg": "/gallery/40.jpg",
         "index": 39
     },
     {
-        "png": "/41.png",
-        "jpg": "/41.jpg",
+        "png": "/gallery/41.png",
+        "jpg": "/gallery/41.jpg",
         "index": 40
     },
     {
-        "png": "/42.png",
-        "jpg": "/42.jpg",
+        "png": "/gallery/42.png",
+        "jpg": "/gallery/42.jpg",
         "index": 41
     },
     {
-        "png": "/43.png",
-        "jpg": "/43.jpg",
+        "png": "/gallery/43.png",
+        "jpg": "/gallery/43.jpg",
         "index": 42
     },
     {
-        "png": "/44.png",
-        "jpg": "/44.jpg",
+        "png": "/gallery/44.png",
+        "jpg": "/gallery/44.jpg",
         "index": 43
     },
     {
-        "png": "/45.png",
-        "jpg": "/45.jpg",
+        "png": "/gallery/45.png",
+        "jpg": "/gallery/45.jpg",
         "index": 44
     },
     {
-        "png": "/46.png",
-        "jpg": "/46.jpg",
+        "png": "/gallery/46.png",
+        "jpg": "/gallery/46.jpg",
         "index": 45
     },
     {
-        "png": "/47.png",
-        "jpg": "/47.jpg",
+        "png": "/gallery/47.png",
+        "jpg": "/gallery/47.jpg",
         "index": 46
     },
     {
-        "png": "/48.png",
-        "jpg": "/48.jpg",
+        "png": "/gallery/48.png",
+        "jpg": "/gallery/48.jpg",
         "index": 47
     },
     {
-        "png": "/49.png",
-        "jpg": "/49.jpg",
+        "png": "/gallery/49.png",
+        "jpg": "/gallery/49.jpg",
         "index": 48
     },
     {
-        "png": "/50.png",
-        "jpg": "/50.jpg",
+        "png": "/gallery/50.png",
+        "jpg": "/gallery/50.jpg",
         "index": 49
     },
     {
-        "png": "/51.png",
-        "jpg": "/51.jpg",
+        "png": "/gallery/51.png",
+        "jpg": "/gallery/51.jpg",
         "index": 50
     },
     {
-        "png": "/52.png",
-        "jpg": "/52.jpg",
+        "png": "/gallery/52.png",
+        "jpg": "/gallery/52.jpg",
         "index": 51
     },
     {
-        "png": "/53.png",
-        "jpg": "/53.jpg",
+        "png": "/gallery/53.png",
+        "jpg": "/gallery/53.jpg",
         "index": 52
     },
     {
-        "png": "/54.png",
-        "jpg": "/54.jpg",
+        "png": "/gallery/54.png",
+        "jpg": "/gallery/54.jpg",
         "index": 53
     },
     {
-        "png": "/55.png",
-        "jpg": "/55.jpg",
+        "png": "/gallery/55.png",
+        "jpg": "/gallery/55.jpg",
         "index": 54
     },
     {
-        "png": "/56.png",
-        "jpg": "/56.jpg",
+        "png": "/gallery/56.png",
+        "jpg": "/gallery/56.jpg",
         "index": 55
     },
     {
-        "png": "/57.png",
-        "jpg": "/57.jpg",
+        "png": "/gallery/57.png",
+        "jpg": "/gallery/57.jpg",
         "index": 56
     },
     {
-        "png": "/58.png",
-        "jpg": "/58.jpg",
+        "png": "/gallery/58.png",
+        "jpg": "/gallery/58.jpg",
         "index": 57
     },
     {
-        "png": "/59.png",
-        "jpg": "/59.jpg",
+        "png": "/gallery/59.png",
+        "jpg": "/gallery/59.jpg",
         "index": 58
     },
     {
-        "png": "/60.png",
-        "jpg": "/60.jpg",
+        "png": "/gallery/60.png",
+        "jpg": "/gallery/60.jpg",
         "index": 59
     },
     {
-        "png": "/61.png",
-        "jpg": "/61.jpg",
+        "png": "/gallery/61.png",
+        "jpg": "/gallery/61.jpg",
         "index": 60
     },
     {
-        "png": "/62.png",
-        "jpg": "/62.jpg",
+        "png": "/gallery/62.png",
+        "jpg": "/gallery/62.jpg",
         "index": 61
     },
     {
-        "png": "/63.png",
-        "jpg": "/63.jpg",
+        "png": "/gallery/63.png",
+        "jpg": "/gallery/63.jpg",
         "index": 62
     },
     {
-        "png": "/64.png",
-        "jpg": "/64.jpg",
+        "png": "/gallery/64.png",
+        "jpg": "/gallery/64.jpg",
         "index": 63
     },
     {
-        "png": "/65.png",
-        "jpg": "/65.jpg",
+        "png": "/gallery/65.png",
+        "jpg": "/gallery/65.jpg",
         "index": 64
     },
     {
-        "png": "/66.png",
-        "jpg": "/66.jpg",
+        "png": "/gallery/66.png",
+        "jpg": "/gallery/66.jpg",
         "index": 65
     },
     {
-        "png": "/67.png",
-        "jpg": "/67.jpg",
+        "png": "/gallery/67.png",
+        "jpg": "/gallery/67.jpg",
         "index": 66
     },
     {
-        "png": "/68.png",
-        "jpg": "/68.jpg",
+        "png": "/gallery/68.png",
+        "jpg": "/gallery/68.jpg",
         "index": 67
     },
     {
-        "png": "/69.png",
-        "jpg": "/69.jpg",
+        "png": "/gallery/69.png",
+        "jpg": "/gallery/69.jpg",
         "index": 68
     },
     {
-        "png": "/70.png",
-        "jpg": "/70.jpg",
+        "png": "/gallery/70.png",
+        "jpg": "/gallery/70.jpg",
         "index": 69
     },
     {
-        "png": "/71.png",
-        "jpg": "/71.jpg",
+        "png": "/gallery/71.png",
+        "jpg": "/gallery/71.jpg",
         "index": 70
     },
     {
-        "png": "/72.png",
-        "jpg": "/72.jpg",
+        "png": "/gallery/72.png",
+        "jpg": "/gallery/72.jpg",
         "index": 71
     },
     {
-        "png": "/73.png",
-        "jpg": "/73.jpg",
+        "png": "/gallery/73.png",
+        "jpg": "/gallery/73.jpg",
         "index": 72
     },
     {
-        "png": "/74.png",
-        "jpg": "/74.jpg",
+        "png": "/gallery/74.png",
+        "jpg": "/gallery/74.jpg",
         "index": 73
     },
     {
-        "png": "/75.png",
-        "jpg": "/75.jpg",
+        "png": "/gallery/75.png",
+        "jpg": "/gallery/75.jpg",
         "index": 74
     },
     {
-        "png": "/76.png",
-        "jpg": "/76.jpg",
+        "png": "/gallery/76.png",
+        "jpg": "/gallery/76.jpg",
         "index": 75
     }
 ]
