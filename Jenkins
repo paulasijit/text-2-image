@@ -4,7 +4,7 @@ pipeline{
         stage("Code Fetch")
         {
             steps{
-                git url: "https://github.com/bhumika-16/text2scene.git" ,branch:"main"
+                git url: "https://github.com/bhumika-16/text2scene.git", branch:"main"
             }
         }
         stage("Build Backend Docker Image")
@@ -72,10 +72,11 @@ pipeline{
         }
     }
     post {
-        always {
-            emailext subject: 'Jenkins Calculator Project',
-                    body: 'Project built now...',
-                    to: 'asijit1610@gmail.com'
+        success {
+            sh 'echo "Build successful"'
+        }
+        failure {
+            sh 'echo "Build failed"'
         }
     }
 }
