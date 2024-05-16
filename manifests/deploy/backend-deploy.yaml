@@ -16,38 +16,7 @@ spec:
     spec:
       containers:
         - name: bhumika-backend
-          image: bhumika-t2i-backend
-          imagePullPolicy: Never
+          image: bhumika16/bhumika-t2i-backend
+          # imagePullPolicy: Never
           ports:
             - containerPort: 5001
-
-        - name: filebeat
-          image: docker.elastic.co/beats/filebeat:7.15.2
-          imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - name: logs-volume
-              mountPath: /app
-            - name: config
-              mountPath: /usr/share/filebeat/filebeat.yml
-              subPath: filebeat.yml
-      volumes:
-        - name: logs-volume
-          emptyDir: {}
-        - name: config
-          configMap:
-            name: filebeat-configmap
-
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: filebeat-configmap
-data:
-  filebeat.yml: |
-    filebeat.inputs:
-    - type: log
-      enabled: true
-      paths:
-        - /app/*.log
-    output.logstash:
-      hosts: ["logstash:5044"]

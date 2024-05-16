@@ -1,81 +1,81 @@
-pipeline {
+pipeline{
     agent any
-    environment {
-        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials-id')
-        KUBECONFIG = credentials('kubernetes-config-id')
-    }
     stages {
-        stage('Checkout Backend') {
-            steps {
-                git 'https://github.com/yourusername/backend.git'
+        stage("Code Fetch")
+        {
+            steps{
+                git url: "https://github.com/bhumika-16/text2scene.git" ,branch:"main"
             }
         }
-        
-        stage('Build Backend Docker Image') {
-            steps {
-                script {
-                    docker.build('yourusername/bhumika-backend:latest', '-f backend/Dockerfile .')
+        stage("Build Backend Docker Image")
+        {
+            steps{
+                sh "docker build -t bhumika-t2i-backend src/backend"
+            }
+        }
+
+        stage("Build Frontend Docker Image")
+        {
+            steps{
+                sh "docker build -t bhumika-t2i-frontend src/frontend"
+            }
+        }
+        stage("Push Backend Docker Images")
+        {
+            steps{
+                withCredentials([usernamePassword(credentialsId:"DockerHubCred",passwordVariable:"dockerpassword",usernameVariable:"dockerusername")]){
+
+                    sh "docker login -u ${env.dockerusername} -p ${env.dockerpassword}"
+                    sh "docker tag bhumika-t2i-backend  ${env.dockerusername}/bhumika-t2i-backend"
+                    sh "docker push ${env.dockerusername}/bhumika-t2i-backend"
+
                 }
             }
+
         }
-        
-        stage('Push Backend Docker Image to Docker Hub') {
-            steps {
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: DOCKER_HUB_CREDENTIALS, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]) {
-                    script {
-                        docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials-id') {
-                            docker.image('yourusername/bhumika-backend:latest').push('latest')
-                        }
-                    }
+        stage("Push Frontend Docker Images")
+        {
+            steps{
+                withCredentials([usernamePassword(credentialsId:"DockerHubCred",passwordVariable:"dockerpassword",usernameVariable:"dockerusername")]){
+
+                    sh "docker login -u ${env.dockerusername} -p ${env.dockerpassword}"
+                    sh "docker tag bhumika-t2i-frontend  ${env.dockerusername}/bhumika-t2i-frontend"
+                    sh "docker push ${env.dockerusername}/bhumika-t2i-frontend"
+
                 }
             }
+
         }
-        
-        stage('Deploy Backend to Kubernetes') {
+
+        stage("Deploy Kubernetes pods") {
             steps {
-                withCredentials([file(credentialsId: 'kubernetes-config-id', variable: 'KUBECONFIG')]) {
-                    sh 'kubectl apply -f deploy/backend-deploy.yaml'
-                    sh 'kubectl apply -f svc/backend-service.yaml'
-                    sh 'kubectl apply -f ingress/ingress-backend.yaml'
-                }
+                sh "kubectl apply -f deploy/mysql-deploy.yaml"
+                sh "kubectl apply -f deploy/ngnix-deploy.yaml"
+                sh "kubectl apply -f deploy/backend-deploy.yaml"
+                sh "kubectl apply -f deploy/frontend-deploy.yaml"
             }
         }
-        
-        stage('Checkout Frontend') {
+
+        stage("Set Ingress rules for Frontend and Backend") {
             steps {
-                git 'https://github.com/yourusername/frontend.git'
+                sh "kubectl apply -f ingress/ingress-backend.yaml"
+                sh "kubectl apply -f ingress/ingress-frontend.yaml"
             }
         }
-        
-        stage('Build Frontend Docker Image') {
+
+        stage("Deploy Kubernetes services") {
             steps {
-                script {
-                    docker.build('yourusername/bhumika-frontend:latest', '-f frontend/Dockerfile .')
-                }
+                sh "kubectl apply -f svc/backend-service.yaml"
+                sh "kubectl apply -f svc/frontend-service.yaml"
+                sh "kubectl apply -f svc/ngnix-svc.yaml"
             }
         }
-        
-        stage('Push Frontend Docker Image to Docker Hub') {
-            steps {
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: DOCKER_HUB_CREDENTIALS, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]) {
-                    script {
-                        docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials-id') {
-                            docker.image('yourusername/bhumika-frontend:latest').push('latest')
-                        }
-                    }
-                }
-            }
-        }
-        
-        stage('Deploy Frontend to Kubernetes') {
-            steps {
-                withCredentials([file(credentialsId: 'kubernetes-config-id', variable: 'KUBECONFIG')]) {
-                    sh 'kubectl apply -f deploy/frontend-deploy.yaml'
-                    sh 'kubectl apply -f svc/frontend-service.yaml'
-                    sh 'kubectl apply -f ingress/ingress-frontend.yaml'
-                }
-            }
+    }
+    post{
+        always{
+            mail to: "bhumikajindal2014@gmail.com",
+            subject: "Jenkins Calculator Project",
+            body: "Project built now..."
         }
     }
 }
-
