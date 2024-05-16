@@ -66,6 +66,8 @@ pipeline {
     post {
         success {
             script {
+                sh "sudo kubectl delete pod -l app=bhumika-backend --field-selector=status.phase==Running"
+                sh "sudo kubectl delete pod -l app=bhumika-frontend --field-selector=status.phase==Running"
                 sh "sudo kubectl delete pod -l app=bhumika-backend --field-selector=status.phase!=Running"
                 sh "sudo kubectl delete pod -l app=bhumika-frontend --field-selector=status.phase!=Running"
                 sh "docker image prune -f"
