@@ -1,0 +1,81 @@
+pipeline {
+    agent any
+    environment {
+        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials-id')
+        KUBECONFIG = credentials('kubernetes-config-id')
+    }
+    stages {
+        stage('Checkout Backend') {
+            steps {
+                git 'https://github.com/yourusername/backend.git'
+            }
+        }
+        
+        stage('Build Backend Docker Image') {
+            steps {
+                script {
+                    docker.build('yourusername/bhumika-backend:latest', '-f backend/Dockerfile .')
+                }
+            }
+        }
+        
+        stage('Push Backend Docker Image to Docker Hub') {
+            steps {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: DOCKER_HUB_CREDENTIALS, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]) {
+                    script {
+                        docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials-id') {
+                            docker.image('yourusername/bhumika-backend:latest').push('latest')
+                        }
+                    }
+                }
+            }
+        }
+        
+        stage('Deploy Backend to Kubernetes') {
+            steps {
+                withCredentials([file(credentialsId: 'kubernetes-config-id', variable: 'KUBECONFIG')]) {
+                    sh 'kubectl apply -f deploy/backend-deploy.yaml'
+                    sh 'kubectl apply -f svc/backend-service.yaml'
+                    sh 'kubectl apply -f ingress/ingress-backend.yaml'
+                }
+            }
+        }
+        
+        stage('Checkout Frontend') {
+            steps {
+                git 'https://github.com/yourusername/frontend.git'
+            }
+        }
+        
+        stage('Build Frontend Docker Image') {
+            steps {
+                script {
+                    docker.build('yourusername/bhumika-frontend:latest', '-f frontend/Dockerfile .')
+                }
+            }
+        }
+        
+        stage('Push Frontend Docker Image to Docker Hub') {
+            steps {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: DOCKER_HUB_CREDENTIALS, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']]) {
+                    script {
+                        docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials-id') {
+                            docker.image('yourusername/bhumika-frontend:latest').push('latest')
+                        }
+                    }
+                }
+            }
+        }
+        
+        stage('Deploy Frontend to Kubernetes') {
+            steps {
+                withCredentials([file(credentialsId: 'kubernetes-config-id', variable: 'KUBECONFIG')]) {
+                    sh 'kubectl apply -f deploy/frontend-deploy.yaml'
+                    sh 'kubectl apply -f svc/frontend-service.yaml'
+                    sh 'kubectl apply -f ingress/ingress-frontend.yaml'
+                }
+            }
+        }
+    }
+}
+
