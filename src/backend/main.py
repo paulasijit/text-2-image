@@ -3,7 +3,7 @@ import hashlib
 import json
 from datetime import datetime, timedelta, timezone
 import logging
-
+from logging.handlers import RotatingFileHandler
 import matplotlib.pyplot as plt
 import pandas as pd
 import pymysql
@@ -189,6 +189,20 @@ port = "5001"
 #     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 # )
 
+file_handler = RotatingFileHandler('flask_app.log', maxBytes=2000, backupCount=10)
+file_handler.setLevel(logging.INFO)
+file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(file_formatter)
+
+# Set up a stream handler for stdout
+stream_handler = logging.StreamHandler()
+stream_handler.setLevel(logging.INFO)
+stream_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+stream_handler.setFormatter(stream_formatter)
+
+# Add handlers to the app's logger
+app.logger.addHandler(file_handler)
+app.logger.addHandler(stream_handler)
 
 @app.after_request
 def refresh_expiring_jwts(response):
@@ -447,9 +461,4 @@ def test():
 
 
 if __name__ == "__main__":
-    handler = logging.StreamHandler()
-    handler.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    handler.setFormatter(formatter)
-    app.logger.addHandler(handler)
     app.run(host="0.0.0.0", port=5001, debug=True)

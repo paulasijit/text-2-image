@@ -76,13 +76,6 @@ pipeline {
                 sh "sudo kubectl apply -f manifests/svc/nginx-svc.yaml"
             }
         }
-        stage("Deploy Logtash") {
-            steps {
-                sh "sudo kubectl apply -f manifests/config/logtash-config.yaml"
-                sh "sudo kubectl apply -f manifests/deploy/logtash-deploy.yaml"
-                
-            }
-        }
     }
     
     post {
