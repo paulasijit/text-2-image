@@ -15,10 +15,17 @@ spec:
         app: elasticsearch
     spec:
       containers:
-      - name: elasticsearch
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.12.1
-        ports:
-        - containerPort: 9200
-        env:
-        - name: discovery.type
-          value: single-node
+        - name: elasticsearch
+          image: docker.elastic.co/elasticsearch/elasticsearch:7.12.1
+          ports:
+            - containerPort: 9200
+              name: http
+          env:
+            - name: discovery.type
+              value: single-node
+          volumeMounts:
+            - name: elasticsearch-data
+              mountPath: /usr/share/elasticsearch/data
+      volumes:
+        - name: elasticsearch-data
+          emptyDir: {}  # Replace with a PersistentVolume for production

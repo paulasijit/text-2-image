@@ -17,6 +17,11 @@ spec:
       containers:
         - name: bhumika-backend
           image: bhumika16/bhumika-t2i-backend:latest
-          # imagePullPolicy: Always
           ports:
             - containerPort: 5001
+          volumeMounts: 
+            - name: shared-logs
+              mountPath: /app # Mount /app instead of /var/log/flask_app
+      volumes:
+        - name: shared-logs
+          emptyDir: {} 

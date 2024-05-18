@@ -5,13 +5,22 @@ metadata:
 data:
   logstash.conf: |
     input {
-      beats {
-        port => 5044
+      file {
+        path => "/usr/share/logstash/data/flask_app/app/flask_app.log" 
+        start_position => "beginning"
+        sincedb_path => "/dev/null" 
       }
     }
+
+    filter {
+      grok {
+        match => { "message" => "%{TIMESTAMP_ISO8601:timestamp}\s+-\s+%{LOGLEVEL:loglevel}\s+-\s+%{GREEDYDATA:message}" }
+      }
+    }
+
     output {
       elasticsearch {
-        hosts => ["http://elasticsearch:9200"]
-        index => "%{[@metadata][beat]}-%{+YYYY.MM.dd}"
+        hosts => ["elasticsearch:9200"]
+        index => "flask-logs-%{+YYYY.MM.dd}"
       }
     }
