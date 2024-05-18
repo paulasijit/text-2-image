@@ -16,14 +16,22 @@ data:
 
     [INPUT]
         Name          tail
-        Path          /flask_app.log
+        Path          /var/log/containers/*.log   # Collect all container logs
         Parser        docker
         Tag           kube.*
+
+    [FILTER]
+        Name          kubernetes
+        Match         kube.*
+        Merge_Log     On
+        Keep_Log      Off
+        K8S-Logging.Parser     On
+        K8S-Logging.Exclude    On
 
     [OUTPUT]
         Name          forward
         Match         *
-        Host          logstash-service
+        Host          logstash-service  
         Port          5044
 
   parsers.conf: |
@@ -33,11 +41,7 @@ data:
         Time_Key    time
         Time_Format %Y-%m-%dT%H:%M:%S.%L
         Time_Keep   On
-        # Optional
-        # Command      |  Decoder | Field      | Optional Action
-        # =============|=======================|=================
-        Decode_Field_As   escaped_utf8    log      do_next
-        Decode_Field_As   json       log
+        Decode_Field_As   escaped_utf8    log      
 
 ---
 apiVersion: apps/v1
@@ -45,8 +49,6 @@ kind: DaemonSet
 metadata:
   name: fluent-bit
   namespace: kube-system
-  labels:
-    k8s-app: fluent-bit
 spec:
   selector:
     matchLabels:
@@ -68,12 +70,13 @@ spec:
           mountPath: /fluent-bit/etc
         ports:
         - containerPort: 2020
-        resources:
+        resources: 
           limits:
             memory: 200Mi
           requests:
             cpu: 100m
             memory: 100Mi
+      terminationGracePeriodSeconds: 10
       volumes:
         - name: varlog
           hostPath:

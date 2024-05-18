@@ -12,23 +12,27 @@ data:
     }
 
     filter {
-      # Add your parsing logic here if needed
+      if [kubernetes][pod_name] {
+        mutate { add_field => { "index_name" => "kubernetes-logs-%{+YYYY.MM.dd}" } }
+      }
     }
-
+  
     output {
       elasticsearch {
-        hosts => ["http://elasticsearch:9200"]
-        index => "flask-logs-%{+YYYY.MM.dd}"
+        hosts => ["http://elasticsearch-master:9200"]  
+        index => "%{index_name}"
+        manage_template => false
       }
-      stdout { codec => rubydebug }
+      stdout { codec => rubydebug } 
     }
+
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: logstash
 spec:
-  replicas: 1
+  replicas: 1 
   selector:
     matchLabels:
       app: logstash
@@ -44,8 +48,8 @@ spec:
         - name: config-volume
           mountPath: /usr/share/logstash/pipeline
         ports:
-        - containerPort: 5044
-        - containerPort: 9600
+        - containerPort: 5044 
+        - containerPort: 9600 # For monitoring Logstash
       volumes:
       - name: config-volume
         configMap:
