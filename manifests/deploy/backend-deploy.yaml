@@ -22,7 +22,7 @@ spec:
             - containerPort: 5001
           volumeMounts: 
             - name: shared-logs
-              mountPath: /app # Mount /app instead of /var/log/flask_app
+              mountPath: /app 
       volumes:
         - name: shared-logs
-          emptyDir: {} 
+          emptyDir: {}
