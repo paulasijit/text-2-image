@@ -8,7 +8,7 @@ data:
       file {
         path => "/usr/share/logstash/data/flask_app/app/flask_app.log" 
         start_position => "beginning"
-        sincedb_path => "/dev/null" 
+        sincedb_path => "/dev/null" # disable sincedb to always read from the beginning
       }
     }
 
