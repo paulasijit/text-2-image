@@ -183,11 +183,11 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
 jwt = JWTManager(app)
 port = "5001"
 
-logging.basicConfig(
-    filename='flask_app.log',
-    level=logging.DEBUG,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
+# logging.basicConfig(
+#     filename='flask_app.log',
+#     level=logging.DEBUG,
+#     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+# )
 
 
 @app.after_request
@@ -447,4 +447,9 @@ def test():
 
 
 if __name__ == "__main__":
+    handler = logging.StreamHandler()
+    handler.setLevel(logging.INFO)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    app.logger.addHandler(handler)
     app.run(host="0.0.0.0", port=5001, debug=True)

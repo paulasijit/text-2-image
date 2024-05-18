@@ -41,9 +41,9 @@ pipeline {
         }
         stage("Deploy ELK") {
             steps {
-                sh "sudo kubectl apply -f manifests/config/logtash-config.yaml"
-                sh "sudo kubectl apply -f manifests/config/filebeat-config.yaml"
-                sh "sudo kubectl apply -f manifests/deploy/filebeat-deploy.yaml"
+                // sh "sudo kubectl apply -f manifests/config/logtash-config.yaml"
+                // sh "sudo kubectl apply -f manifests/config/filebeat-config.yaml"
+                sh "sudo kubectl apply -f manifests/deploy/fluentbit-deploy.yaml"
                 sh "sudo kubectl apply -f manifests/deploy/logtash-deploy.yaml"
                 sh "sudo kubectl apply -f manifests/deploy/elasticsearch-deploy.yaml"
                 sh "sudo kubectl apply -f manifests/deploy/kibana-deploy.yaml"

@@ -1,9 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: logstash-config
+data:
+  logstash.conf: |
+    input {
+      tcp {
+        port => 5044
+        codec => json_lines
+      }
+    }
+
+    filter {
+      # Add your parsing logic here if needed
+    }
+
+    output {
+      elasticsearch {
+        hosts => ["http://elasticsearch:9200"]
+        index => "flask-logs-%{+YYYY.MM.dd}"
+      }
+      stdout { codec => rubydebug }
+    }
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: logstash
-  labels:
-    app: logstash
 spec:
   replicas: 1
   selector:
@@ -15,16 +38,15 @@ spec:
         app: logstash
     spec:
       containers:
-        - name: logstash
-          image: docker.elastic.co/logstash/logstash:7.12.1
-          ports:
-            - containerPort: 5044
-              name: beats
-          volumeMounts:
-            - name: config-volume
-              mountPath: /usr/share/logstash/pipeline
-      volumes:
+      - name: logstash
+        image: docker.elastic.co/logstash/logstash:7.13.2
+        volumeMounts:
         - name: config-volume
-          configMap:
-            name: logstash-config
-
+          mountPath: /usr/share/logstash/pipeline
+        ports:
+        - containerPort: 5044
+        - containerPort: 9600
+      volumes:
+      - name: config-volume
+        configMap:
+          name: logstash-config
