@@ -4,19 +4,11 @@ metadata:
   name: filebeat-config
 data:
   filebeat.yml: |-
-    filebeat.inputs:
-      - type: log
-        paths:
-          - /var/log/containers/*_bhumika-backend-deployment*_app_shared-logs/app/flask_app.log  # Modified path
-        json.keys_under_root: true
-        processors:
-          - add_kubernetes_metadata:
-
-    # (Optional) To enable hints based autodiscover, remove `filebeat.inputs` configuration and uncomment this:
-    #filebeat.autodiscover:
-    #  providers:
-    #    - type: kubernetes
-    #      hints.enabled: true
+    filebeat.autodiscover:
+      providers:
+        - type: kubernetes
+          hints.enabled: true
+          
 
     output.logstash:
       hosts: ["logstash-service:5044"]

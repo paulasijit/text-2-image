@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         app: bhumika-backend
+        app.kubernetes.io/name: flask
     spec:
       containers:
         - name: bhumika-backend
