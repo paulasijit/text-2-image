@@ -16,7 +16,7 @@ data:
 
     [INPUT]
         Name          tail
-        Path          /var/log/containers/*.log
+        Path          /flask_app.log
         Parser        docker
         Tag           kube.*
 
