@@ -11,16 +11,10 @@ data:
       }
     }
 
-    filter {
-      if [kubernetes][pod_name] {
-        mutate { add_field => { "index_name" => "kubernetes-logs-%{+YYYY.MM.dd}" } }
-      }
-    }
-  
     output {
       elasticsearch {
         hosts => ["http://elasticsearch:9200"]  
-        index => "%{index_name}"
+        index => "kubernetes-logs-%{+YYYY.MM.dd}"  # Direct interpolation
         manage_template => false
       }
       stdout { codec => rubydebug } 
