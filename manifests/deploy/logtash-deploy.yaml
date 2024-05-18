@@ -14,7 +14,7 @@ data:
     output {
       elasticsearch {
         hosts => ["http://elasticsearch:9200"]  
-        index => "kubernetes-logs-%{+YYYY.MM.dd}"  # Direct interpolation
+        index => "text2scene-logs-%{+YYYY.MM.dd}"  # Direct interpolation
         manage_template => false
       }
       stdout { codec => rubydebug } 
