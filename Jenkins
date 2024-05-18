@@ -64,7 +64,7 @@ pipeline {
         }
         stage("Deploy Logtash") {
             steps {
-                sh "sudo kubectl apply -f config/logtash-config.yaml"
+                sh "sudo kubectl apply -f manifests/config/logtash-config.yaml"
                 sh "sudo kubectl apply -f manifests/deploy/logtash-deploy.yaml"
                 sh "sudo kubectl apply -f manifests/svc/logtash-svc.yaml"
             }
