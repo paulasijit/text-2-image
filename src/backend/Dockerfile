@@ -19,7 +19,7 @@ COPY requirements.txt /app/
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN huggingface-cli login --token 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
+# RUN huggingface-cli login --token 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
 
 # Copy the rest of the application code into the container at /app
 COPY . /app/
