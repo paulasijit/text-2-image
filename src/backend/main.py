@@ -183,13 +183,6 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
 jwt = JWTManager(app)
 port = "5001"
 
-logging.basicConfig(
-    filename='flask_app.log',
-    level=logging.DEBUG,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-
-
 @app.after_request
 def refresh_expiring_jwts(response):
     try:
