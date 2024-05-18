@@ -7,41 +7,29 @@ data:
   fluent-bit.conf: |
     [SERVICE]
         Flush        1
+        Daemon       Off
         Log_Level    info
-        Daemon       off
-        Parsers_File parsers.conf
-        HTTP_Server  On
-        HTTP_Listen  0.0.0.0
-        HTTP_Port    2020
 
     [INPUT]
-        Name          tail
-        Path          /var/log/containers/*.log   # Collect all container logs
-        Parser        docker
-        Tag           kube.*
+        Name              tail
+        Path              /var/log/containers/*.log
+        Parser            docker
+        Tag               kube.*
+        Refresh_Interval  5
 
     [FILTER]
-        Name          kubernetes
-        Match         kube.*
-        Merge_Log     On
-        Keep_Log      Off
-        K8S-Logging.Parser     On
-        K8S-Logging.Exclude    On
+        Name                kubernetes
+        Match               kube.*
+        Merge_Log           On
+        K8S-Logging.Parser  On
+        K8S-Logging.Exclude Off
 
     [OUTPUT]
-        Name          forward
-        Match         *
-        Host          logstash-service  
-        Port          5044
-
-  parsers.conf: |
-    [PARSER]
-        Name        docker
-        Format      json
-        Time_Key    time
-        Time_Format %Y-%m-%dT%H:%M:%S.%L
-        Time_Keep   On
-        Decode_Field_As   escaped_utf8    log      
+        Name  tcp
+        Match *
+        Host  logstash
+        Port  5044
+        Format json_lines   
 
 ---
 apiVersion: apps/v1
