@@ -29,7 +29,7 @@ data:
         Match *
         Host  logstash
         Port  5044
-        Format json_lines   
+        Format json_lines
 
 ---
 apiVersion: apps/v1
@@ -37,34 +37,35 @@ kind: DaemonSet
 metadata:
   name: fluent-bit
   namespace: kube-system
+  labels:
+    k8s-app: fluent-bit
 spec:
   selector:
     matchLabels:
-      name: fluent-bit
+      k8s-app: fluent-bit
   template:
     metadata:
       labels:
-        name: fluent-bit
+        k8s-app: fluent-bit
     spec:
       containers:
-      - name: fluent-bit
-        image: fluent/fluent-bit:latest
-        volumeMounts:
-        - name: varlog
-          mountPath: /var/log
-        - name: varlibdockercontainers
-          mountPath: /var/lib/docker/containers
-        - name: config
-          mountPath: /fluent-bit/etc
-        ports:
-        - containerPort: 2020
-        resources: 
-          limits:
-            memory: 200Mi
-          requests:
-            cpu: 100m
-            memory: 100Mi
-      terminationGracePeriodSeconds: 10
+        - name: fluent-bit
+          image: fluent/fluent-bit:1.7.9
+          resources:
+            limits:
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          volumeMounts:
+            - name: varlog
+              mountPath: /var/log
+            - name: varlibdockercontainers
+              mountPath: /var/lib/docker/containers
+              readOnly: true
+            - name: config
+              mountPath: /fluent-bit/etc/
+      terminationGracePeriodSeconds: 30
       volumes:
         - name: varlog
           hostPath:
@@ -75,3 +76,4 @@ spec:
         - name: config
           configMap:
             name: fluent-bit-config
+
