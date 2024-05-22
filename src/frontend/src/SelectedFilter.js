@@ -12,8 +12,6 @@ export default function UnstyledSelectForm({ title, data, func, selected=null })
         func(value);
     }
 
-    console.log(value, 888)
-
     return (
         <form>
             <Label htmlFor={`${title}-select-${data.length}`}>

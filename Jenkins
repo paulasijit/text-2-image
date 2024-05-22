@@ -19,12 +19,16 @@ pipeline {
         stage("Testing Backend application") {
             steps {
                 sh "docker run --rm ${BACKEND_IMAGE} pytest ." 
-                sh "docker run --rm ${BACKEND_IMAGE} pytest ." 
             }
         }
         stage("Build Frontend Docker Image") {
             steps {
                 sh "docker build -t bhumika-t2i-frontend:${DOCKER_IMAGE_TAG} src/frontend"
+            }
+        }
+        stage("Testing Frontend application") {
+            steps {
+                sh "docker run --rm ${FRONTEND_IMAGE} npm test" 
             }
         }
         stage("Push Backend Docker Images") {
