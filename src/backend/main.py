@@ -21,11 +21,10 @@ from flask_jwt_extended import (
 from googletrans import Translator
 from userMixin import *
 
-connection = pymysql.connect(
+def create_users_table():
+    connection = pymysql.connect(
     host="mysql-t2i", user="root", password="root", database="mysql"
 )
-
-def create_users_table():
     with connection.cursor() as cursor:
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS users (
@@ -214,6 +213,7 @@ def registerPost():
     email = payload.get("email")
     password = payload.get("password")
     md5pass = hashlib.md5(password.encode())
+    connection = pymysql.connect(host="mysql-t2i", user="root", password="root", database="mysql")
     try:
         with connection.cursor() as cursor:
             cursor.execute(
@@ -236,6 +236,8 @@ def registerPost():
     except Exception as e:
         app.logger.error("Failed to register user: %s", str(e))
         return jsonify({"error": "Failed to register user", "mysqlError": str(e)}), 500
+    finally:
+        connection.close()
 
 
 @app.route("/login", methods=["POST"])
@@ -246,6 +248,7 @@ def login_post():
     app.logger.info("Login attempt for email: %s", email)
     password = payload.get("password")
     md5pass = hashlib.md5(password.encode())
+    connection = pymysql.connect(host="mysql-t2i", user="root", password="root", database="mysql")
     try:
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
@@ -271,6 +274,8 @@ def login_post():
     except Exception as e:
         app.logger.error("Failed to log in: %s", str(e))
         return jsonify({"error": "Failed to log in", "mysqlError": str(e)}), 500
+    finally:
+        connection.close()
 
 
 @app.route("/logout")

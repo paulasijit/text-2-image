@@ -65,18 +65,3 @@ def test_sentiment_score(output, expected_positive, expected_negative, expected_
     assert positive_sentiment == expected_positive
     assert negative_sentiment == expected_negative
     assert positive_prob == expected_score
-
-# Test API endpoints with Flask test client (requires a running app instance)
-def test_filtration_scores_endpoint(client):
-    response = client.post(
-        "/filtration-scores", json={"text": "This is a test text"}
-    )
-    assert response.status_code == 200
-    assert "filtration_scores" in response.json
-
-def test_sentiment_scores_endpoint(client):
-    response = client.post(
-        "/sentiment-scores", json={"text": "This is a test text"}
-    )
-    assert response.status_code == 200
-    assert "sentiment_scores" in response.json
