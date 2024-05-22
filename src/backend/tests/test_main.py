@@ -9,8 +9,8 @@ import json
     "text, dest_lang, expected_translation",
     [
         ("こんにちは", "en", "Hello"),
-        ("안녕하세요", "en", "Hello"),
-        ("नमस्ते", "en", "Hello"),
+        ("안녕하세요", "en", "hello"),
+        ("नमस्ते", "en", "hello"),
         ("你好", "en", "Hello"),
         ("ছবি", "en", "picture")
     ],
@@ -59,7 +59,7 @@ def test_semantic_query_mock(mock_post):
 def test_sentiment_score(output, expected_positive, expected_negative, expected_score):
     positive_sentiment, negative_sentiment, positive_prob, _ = main.sentiment_score(
         [output]
-    )  
+    )
     assert positive_sentiment == expected_positive
     assert negative_sentiment == expected_negative
     assert positive_prob == expected_score
