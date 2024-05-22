@@ -95,8 +95,9 @@ const Translate = ({ user }) => {
         console.log("token refreshed");
         dispatch(updateToken(data.access_token));
       }
-
+      console.log("i am here 1", translatedText)
       setTranslatedText(data.translated_text);
+      console.log("i am here 2", translatedText)
       enqueueSnackbar("Translation done successfully!", {
         variant: "success",
         anchorOrigin: {

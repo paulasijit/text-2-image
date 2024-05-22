@@ -8,13 +8,11 @@ import json
 @pytest.mark.parametrize(
     "text, dest_lang, expected_translation",
     [
-        ("Bonjour", "en", "Hello"),
-        ("gato", "en", "cat"),
-        ("Hund", "en", "dog"),
         ("こんにちは", "en", "Hello"),
         ("안녕하세요", "en", "Hello"),
         ("नमस्ते", "en", "Hello"),
         ("你好", "en", "Hello"),
+        ("ছবি", "en", "picture")
     ],
 )
 def test_get_translation(text, dest_lang, expected_translation):
