@@ -18,7 +18,7 @@ pipeline {
         }
         stage("Test Backend") {
             steps {
-                sh "docker run --rm ${BACKEND_IMAGE} pytest src/backend" 
+                sh "docker run --rm ${BACKEND_IMAGE} pytest ." 
             }
         }
         stage("Build Frontend Docker Image") {

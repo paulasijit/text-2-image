@@ -24,7 +24,6 @@ def test_get_translation(text, dest_lang, expected_translation):
 # Test filtration_query (Mock external API call)
 @patch("requests.post")
 def test_filtration_query_mock(mock_post):
-    # Mock response data
     mock_response_data = [{"label": "safe", "score": 0.95}]
     mock_post.return_value.json.return_value = mock_response_data
 
@@ -36,7 +35,6 @@ def test_filtration_query_mock(mock_post):
 # Test semantic_query (Mock external API call)
 @patch("requests.post")
 def test_semantic_query_mock(mock_post):
-    # Mock response data
     mock_response_data = [[{"label": "joy", "score": 0.8}]]
     mock_post.return_value.json.return_value = mock_response_data
 
