@@ -19,3 +19,4 @@ pymysql
 Flask-Login
 cryptography
 flask-jwt-extended
+pytest

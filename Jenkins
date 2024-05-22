@@ -16,6 +16,11 @@ pipeline {
                 sh "docker build -t bhumika-t2i-backend:${DOCKER_IMAGE_TAG} src/backend"
             }
         }
+        stage("Test Backend") {
+            steps {
+                sh "docker run --rm ${BACKEND_IMAGE} pytest src/backend" 
+            }
+        }
         stage("Build Frontend Docker Image") {
             steps {
                 sh "docker build -t bhumika-t2i-frontend:${DOCKER_IMAGE_TAG} src/frontend"
