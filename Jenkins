@@ -76,8 +76,8 @@ pipeline {
         }
         stage("Setting up autoscaling") {
             steps {
-                sh "sudo kubectl autoscale deployment bhumika-backend --cpu-percent=50 --min=1 --max=10"
-                sh "sudo kubectl autoscale deployment bhumika-frontend --cpu-percent=50 --min=1 --max=10"
+                sh "sudo kubectl autoscale deployment bhumika-backend-deployment --cpu-percent=50 --min=1 --max=10"
+                sh "sudo kubectl autoscale deployment bhumika-frontend-deployment --cpu-percent=50 --min=1 --max=10"
             }
         }
     }
