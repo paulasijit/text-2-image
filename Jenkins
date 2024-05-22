@@ -16,7 +16,7 @@ pipeline {
                 sh "docker build -t bhumika-t2i-backend:${DOCKER_IMAGE_TAG} src/backend"
             }
         }
-        stage("Test Backend") {
+        stage("Testing Backend application") {
             steps {
                 sh "docker run --rm ${BACKEND_IMAGE} pytest ." 
                 sh "docker run --rm ${BACKEND_IMAGE} pytest ." 
@@ -82,8 +82,17 @@ pipeline {
         }
         stage("Setting up autoscaling") {
             steps {
-                sh "sudo kubectl autoscale deployment bhumika-backend-deployment --cpu-percent=50 --min=1 --max=10"
-                sh "sudo kubectl autoscale deployment bhumika-frontend-deployment --cpu-percent=50 --min=1 --max=10"
+                script {
+                    def hpaExists = sh (
+                        script: 'kubectl get hpa bhumika-backend-deployment',
+                        returnStatus: true
+                    ) == 0
+                    if (!hpaExists) {
+                        sh "sudo kubectl autoscale deployment bhumika-backend-deployment --cpu-percent=50 --min=1 --max=10"
+                    } else {
+                        echo "HPA bhumika-backend-deployment already exists"
+                    }
+                }
             }
         }
     }
