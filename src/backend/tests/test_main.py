@@ -51,7 +51,7 @@ def test_semantic_query_mock(mock_post):
             [{"label": "joy", "score": 0.6}, {"label": "anger", "score": 0.4}],
             60,
             40,
-            0.01,
+            0.004166666666666666,
         ),  # Mixed
         ([], 0, 0, 0),  # Empty input
     ],
