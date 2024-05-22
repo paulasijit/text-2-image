@@ -28,7 +28,7 @@ pipeline {
         }
         stage("Testing Frontend application") {
             steps {
-                sh "docker run --rm ${FRONTEND_IMAGE} npm test" 
+                sh "docker run --rm frontend-test-image sh -c 'npm install && npm test'"
             }
         }
         stage("Push Backend Docker Images") {
