@@ -84,13 +84,22 @@ pipeline {
             steps {
                 script {
                     def hpaExists = sh (
-                        script: 'kubectl get hpa bhumika-backend-deployment',
+                        script: 'sudo kubectl get hpa bhumika-backend-deployment',
                         returnStatus: true
                     ) == 0
                     if (!hpaExists) {
                         sh "sudo kubectl autoscale deployment bhumika-backend-deployment --cpu-percent=50 --min=1 --max=10"
                     } else {
                         echo "HPA bhumika-backend-deployment already exists"
+                    }
+                    def hpaExists = sh (
+                        script: 'sudo kubectl get hpa bhumika-frontend-deployment',
+                        returnStatus: true
+                    ) == 0
+                    if (!hpaExists) {
+                        sh "sudo kubectl autoscale deployment bhumika-frontend-deployment --cpu-percent=50 --min=1 --max=10"
+                    } else {
+                        echo "HPA bhumika-frontend-deployment already exists"
                     }
                 }
             }
