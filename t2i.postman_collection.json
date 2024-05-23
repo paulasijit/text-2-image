@@ -1,0 +1,369 @@
+{
+	"info": {
+		"_postman_id": "5924f332-5c96-430e-a1dd-4d72ba23ea2e",
+		"name": "t2i",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17565332"
+	},
+	"item": [
+		{
+			"name": "sentiment-scores_local",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"boy with a guitar\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:80/sentiment-scores",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "80",
+					"path": [
+						"sentiment-scores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filtration-scores_local",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `",
+							"<style type=\"text/css\">",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+							"    .tftable tr {background-color:#ffffff;}",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+							"    .tftable tr:hover {background-color:#e0ffff;}",
+							"</style>",
+							"",
+							"<table class=\"tftable\" border=\"1\">",
+							"    <tr>",
+							"        <th>File</th>",
+							"        <th>Line</th>",
+							"        <th>Error Message</th>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/flask/app.py\"</td>",
+							"        <td>1498</td>",
+							"        <td>wsgi_app(environ, start_response) -&gt; cabc.Iterable[bytes]:</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/flask/app.py\"</td>",
+							"        <td>1476</td>",
+							"        <td>line 1476, in wsgi_app</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/flask_cors/extension.py\"</td>",
+							"        <td>176</td>",
+							"        <td>wrapped_function(app.make_response(f(*args, **kwargs)))</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/flask/app.py\"</td>",
+							"        <td>1473</td>",
+							"        <td>wsgi_app(environ, start_response) -&gt; cabc.Iterable[bytes]:</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/flask/app.py\"</td>",
+							"        <td>882</td>",
+							"        <td>full_dispatch_request()</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/flask_cors/extension.py\"</td>",
+							"        <td>176</td>",
+							"        <td>wrapped_function(app.make_response(f(*args, **kwargs)))</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/flask/app.py\"</td>",
+							"        <td>880</td>",
+							"        <td>full_dispatch_request()</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/flask/app.py\"</td>",
+							"        <td>865</td>",
+							"        <td>dispatch_request()</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/flask_login/utils.py\"</td>",
+							"        <td>285</td>",
+							"        <td>decorated_view(*args, **kwargs)</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/flask_login/login_manager.py\"</td>",
+							"        <td>196</td>",
+							"        <td>unauthorized()</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/flask_login/utils.py\"</td>",
+							"        <td>120</td>",
+							"        <td>login_url(login_view)</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/flask_login/utils.py\"</td>",
+							"        <td>97</td>",
+							"        <td>expand_login_view(login_view)</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/flask/helpers.py\"</td>",
+							"        <td>220</td>",
+							"        <td>url_for()</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/flask/app.py\"</td>",
+							"        <td>1084</td>",
+							"        <td>url_for()</td>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>\"/usr/local/lib/python3.9/site-packages/werkzeug/routing/map.py\"</td>",
+							"        <td>926</td>",
+							"        <td>build()</td>",
+							"    </tr>",
+							"</table>",
+							"`;",
+							"",
+							"function constructVisualizerPayload() {",
+							"    // No specific data to pass from the response",
+							"    return { response: null }",
+							"}",
+							"",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"boy with a guitar\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:80/filtration-scores",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "80",
+					"path": [
+						"filtration-scores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "translation_local",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNDMxMTEwOSwianRpIjoiN2VmYjU3ZDAtOTU5Ni00ZmJlLTg5OGQtNjI0YzNkZTExNjc0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImFzaWppdDE2MTBAZ21haWwuY29tIiwibmJmIjoxNzE0MzExMTA5LCJjc3JmIjoiOGI3Mjc2MzAtNDgxZi00N2EzLTgwZTItOGJjNmE1MTUyMTE2IiwiZXhwIjoxNzE0MzE0NzA5fQ.YzdfCwN7l-2HfkFVQ2FrcwSYdqMz6mCvurs7cUB1dxs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"একটি গিটার সঙ্গে ছেলে\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:80/translation",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "80",
+					"path": [
+						"translation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register_local",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"asijit1610@gmail.com\",\n    \"password\": \"asijit@1999\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:80/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "80",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login_local",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"asijit1610@gmail.com\",\n    \"password\": \"asijit@1999\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:80/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "80",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout_local",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:80/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "80",
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prompt\": \"eye catching, beautiful, realistic HD movie poster for titanic movie\",\n    \"format\": \"png\",\n    \"cfg_scale\": 7,\n    \"style_preset\": \"cinematic\",\n    \"steps\": 30\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.46.215.227:5001/text2image",
+					"protocol": "http",
+					"host": [
+						"192",
+						"46",
+						"215",
+						"227"
+					],
+					"port": "5001",
+					"path": [
+						"text2image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test_local",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prompt\": \"eye catching, beautiful, realistic HD movie poster for titanic movie\",\n    \"format\": \"png\",\n    \"cfg_scale\": 7,\n    \"style_preset\": \"cinematic\",\n    \"steps\": 30\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5001/text2image",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5001",
+					"path": [
+						"text2image"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
