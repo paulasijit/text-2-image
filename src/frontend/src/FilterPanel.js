@@ -88,7 +88,7 @@ const FilterPanel = ({ setSelectedImageCount,
               <UnstyledSelectForm title={"Steps"} data={steps} func={setSelectedImageSteps} selected={selectedImageSteps} />
             </Grid>
             <Grid item lg={4} md={12} sm={12} xs={12}>
-              <UnstyledSelectForm title={"Sample"} data={samples} func={setSelectedImageCount} selected={selectedImageCount} />
+              <UnstyledSelectForm title={"Samples"} data={samples} func={setSelectedImageCount} selected={selectedImageCount} />
             </Grid>
           </Grid>
         </Stack>
