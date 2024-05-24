@@ -42,6 +42,7 @@ const FilterPanel = ({ setSelectedImageCount,
   const themeGenre = ['Romantic', 'Adventure', 'Thriller', 'Comedy', 'Fantasy', 'Sci-Fi', 'Horror', 'Drama', 'Detective/Mystery'];
   const imageQualities = [5, 10, 15, 20, 25, 30, 35];
   const steps = [10, 20, 30, 40, 50]
+  const samples = [1, 2, 3, 4, 5]
   const location = ['Urban/Cityscape', 'Rural Countryside', 'Mountainous', 'Forests', 'Desert', 'Tropical Beach', 'Oceanic/Aquatic'];
   const weather = ['Sunny', 'Overcast', 'Rain', 'Snow'];
   const technique = ['DSLR', 'Cinematic', 'HDR Imaging', 'Long Exposure', 'Pano', 'Portrait'];
@@ -85,6 +86,9 @@ const FilterPanel = ({ setSelectedImageCount,
             </Grid>
             <Grid item lg={4} md={12} sm={12} xs={12}>
               <UnstyledSelectForm title={"Steps"} data={steps} func={setSelectedImageSteps} selected={selectedImageSteps} />
+            </Grid>
+            <Grid item lg={4} md={12} sm={12} xs={12}>
+              <UnstyledSelectForm title={"Sample"} data={samples} func={setSelectedImageCount} selected={selectedImageCount} />
             </Grid>
           </Grid>
         </Stack>

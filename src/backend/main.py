@@ -173,6 +173,27 @@ def sentiment_score(output):
         print("An error occurred:", e)
         return None
 
+def is_content_appropriate(text):
+    output = filtration_query({"inputs": text})
+
+    positive_score = None
+    negative_scores = 0
+    print(output)
+    # Iterate over the data and sum up scores for all labels except 'OK'
+    for item in output[0]:
+        if item['label'] == 'OK':
+            positive_score = item['score']
+        else:
+            negative_scores += item['score']
+
+    print("Positve Content percentage:", positive_score)
+    print("Negative Content percentage:", negative_scores)
+
+
+    if(negative_scores > positive_score):
+        return False
+    else:
+        return True
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -294,7 +315,11 @@ def get_filtration_scores():
     translated_text = get_translation(payload.get("text"), "en")
     app.logger.info("Filtration scores requested for text: %s", translated_text)
     output = filtration_query({"inputs": translated_text})
-    return jsonify({"filtration_scores": output})
+    if(len(output[0])):
+        return jsonify({"filtration_scores": output})
+    else:
+        app.logger.error("Model not ready!")
+        return jsonify({"error": "Model not ready. Try again!"}), 400
 
 
 @app.route("/sentiment-scores", methods=["POST"])
@@ -344,6 +369,7 @@ def get_sentiment_scores_sum():
 def test():
     default_cfg_scale = 7
     default_steps = 30
+    default_samples = 1
     data = request.json
     prompt = data.get("prompt")
     app.logger.info("Text-to-image conversion requested for prompt: %s", prompt)
@@ -351,6 +377,7 @@ def test():
     cfg_scale = data.get("cfg_scale", default_cfg_scale)
     style_preset = data.get("style_preset")
     steps = data.get("steps", default_steps)
+    samples = data.get("samples", default_samples)
     translated_text = get_translation(prompt, "en")
 
     valid_presets = [
@@ -376,6 +403,10 @@ def test():
     if not translated_text:
         app.logger.warning("Prompt is required.")
         return jsonify({"error": "Prompt is required."}), 400
+    
+    if(is_content_appropriate(translated_text) != True):
+        app.logger.error("Content is inappropriate.")
+        return jsonify({"error": "Content is inappropriate."}), 400
 
     if style_preset and not style_preset in valid_presets:
         app.logger.warning(
@@ -417,31 +448,33 @@ def test():
                 ),
                 400,
             )
-
-    response = requests.post(
-        "https://api.stability.ai/v2beta/stable-image/generate/sd3",
-        headers={
-            "authorization": "Bearer sk-AHSZWDe52CNFvYSubNxc2U7WVYzC62kaLNvCZ3apgxdLMLsN",
-            "accept": "image/*",
-        },
-        files={"none": ""},
-        data={
-            "prompt": translated_text,
-            "output_format": iFormat,
-            "cfg_scale": cfg_scale,
-            "steps": steps,
-            "style_preset": style_preset,
-        },
-    )
-    if response.status_code == 200:
-        image = response.content
-        with open("./image.jpeg", "wb") as file:
-            file.write(image)
-        encoded_image = base64.b64encode(image).decode("utf-8")
-        return jsonify({"image": encoded_image}), 200
+    temp = []
+    for i in range(samples):
+        response = requests.post(
+            "https://api.stability.ai/v2beta/stable-image/generate/sd3",
+            headers={
+                "authorization": "Bearer sk-AHSZWDe52CNFvYSubNxc2U7WVYzC62kaLNvCZ3apgxdLMLsN",
+                "accept": "image/*",
+            },
+            files={"none": ""},
+            data={
+                "prompt": translated_text,
+                "output_format": iFormat,
+                "cfg_scale": cfg_scale,
+                "steps": steps,
+                "style_preset": style_preset,
+                "samples": samples,
+            },
+        )
+        if response.status_code == 200:
+            image = response.content
+            encoded_image = base64.b64encode(image).decode("utf-8")
+            temp.append(encoded_image)
+    if(len(temp)):
+        return jsonify({"images": temp}), 200
     else:
-        app.logger.error("Content is inappropriate.")
-        return jsonify({"error": "Content is inappropriate."}), 400
+        app.logger.error("Failed to generate image")
+        return jsonify({"error": "Failed to generate image. Try again!"}), 400
 
 
 if __name__ == "__main__":
