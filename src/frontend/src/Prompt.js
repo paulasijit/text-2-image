@@ -139,6 +139,7 @@ const Prompt = ({
     selectedTechnique,
     selectedThemeGenre,
     selectedWeather,
+    selectedImageCount
   ]);
 
   useEffect(() => {
