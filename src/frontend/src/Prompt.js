@@ -115,6 +115,7 @@ const Prompt = ({
     { key: 5, label: `Technique: ${selectedTechnique}` },
     { key: 6, label: `Theme/Genre: ${selectedThemeGenre}` },
     { key: 7, label: `Weather: ${selectedWeather}` },
+    { key: 8, label: `Samples: ${selectedImageCount}` },
   ]);
 
   useEffect(() => {
@@ -127,6 +128,7 @@ const Prompt = ({
       { key: 5, label: `Technique: ${selectedTechnique}` },
       { key: 6, label: `Theme/Genre: ${selectedThemeGenre}` },
       { key: 7, label: `Weather: ${selectedWeather}` },
+      { key: 8, label: `Samples: ${selectedImageCount}` },
     ]);
   }, [
     selectedArtStyle,
