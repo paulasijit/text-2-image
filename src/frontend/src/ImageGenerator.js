@@ -82,42 +82,43 @@ const ImageGenerator = ({ user }) => {
 
     const fullPrompt = selections.length > 0 ? `${text}, ${selections}` : text;
     try {
-      for (let i = 0; i < selectedImageCount; i++) {
-        const response = await fetch(`${baseURL}/text2image`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-          body: JSON.stringify({
-            prompt: fullPrompt,
-            format: selectedImageFormat,
-            cfg_scale: selectedImageCFG,
-            style_preset: selectedArtStyle,
-            steps: selectedImageSteps,
-          }),
-        });
+      const response = await fetch(`${baseURL}/text2image`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({
+          prompt: fullPrompt,
+          format: selectedImageFormat,
+          cfg_scale: selectedImageCFG,
+          style_preset: selectedArtStyle,
+          steps: selectedImageSteps,
+          samples: selectedImageCount
+        }),
+      });
 
-        const data = await response.json();
+      const data = await response.json();
 
-        if (!response.ok) {
-          throw new Error(data.error ? data.error : "Response not OK");
-        }
-
-        if (data.access_token) {
-          dispatch(updateToken(data.access_token));
-        }
-
-        enqueueSnackbar("Image generated successfully.", {
-          variant: "success",
-          anchorOrigin: {
-            vertical: "bottom",
-            horizontal: "right",
-          },
-        });
-
-        newImageUrls.push(`data:image/png;base64,${data.image}`);
+      if (!response.ok) {
+        throw new Error(data.error ? data.error : "Response not OK");
       }
+
+      if (data.access_token) {
+        dispatch(updateToken(data.access_token));
+      }
+
+      enqueueSnackbar("Image generated successfully.", {
+        variant: "success",
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "right",
+        },
+      });
+      for (let image of data.images) {
+        newImageUrls.push(`data:image/png;base64,${image}`);
+      }
+
       setImageUrls(newImageUrls);
       handleOpen();
     } catch (error) {
